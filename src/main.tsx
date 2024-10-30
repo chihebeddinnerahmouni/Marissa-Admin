@@ -2,6 +2,7 @@ import App from "./App.tsx";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainPage from "./pages/MainPage.tsx";
 
 
 
@@ -10,9 +11,8 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      { path: "/", element: <p className="mt-10">ana</p> },
-      { path: "/structure", element: <p className="mt-10">structure</p> },
-
+      { path: "/structure", element: <MainPage /> },
+      { path: "/structure/:elements", element: <MainPage /> },
     ],
   },
 ]);
