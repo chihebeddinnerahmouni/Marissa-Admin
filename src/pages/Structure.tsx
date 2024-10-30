@@ -14,16 +14,16 @@ const Structure = () => {
 
   return (
     <div
-      className={`w-full bg-white shadow-hardShadow p-3 mt-[80px] rounded-10 flex flex-col gap-3
-      ${isMobile ? elements ? "hidden" : "block" : "block"}
+      className={`w-full mt-[80px] rounded-10 flex flex-col gap-3
+      ${isMobile && elements ? "hidden" : "block"}
       lg:col-span-3`}
     >
       {classes_array.map((item) => (
         <StructureComp
           key={item.id}
           item={item}
-              setSelectedStructure={setSelectedStructure}
-                selectedStructure={selectedStructure}
+          setSelectedStructure={setSelectedStructure}
+          selectedStructure={selectedStructure}
         />
       ))}
     </div>

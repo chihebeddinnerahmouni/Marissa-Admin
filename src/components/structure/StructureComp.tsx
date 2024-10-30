@@ -22,7 +22,7 @@ const StructureComp: React.FC<StructureCompProps> = ({
 
   return (
     <div
-      className={` w-full  bg-opacity-15 flex items-center gap-2 p-2 rounded-10 transition-all duration-100 ${selectedStructure === item.id ? "bg-main text-main" : "text-writingGrey"
+      className={` w-full cursor-pointer bg-opacity-15 flex items-center gap-2 p-2 rounded-10 transition-all duration-100 ${selectedStructure === item.id ? "bg-main text-main" : "text-writingGrey"
         }`}
       onClick={() => {
         navigate(`/structure/${item.title}`);

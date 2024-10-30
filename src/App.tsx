@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-4 md:px-[100px]">
       <Header />
       <Outlet />
     </div>
