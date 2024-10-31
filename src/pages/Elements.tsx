@@ -2,10 +2,12 @@ import { useMediaQuery } from "react-responsive";
 import { useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Elements = () => {
   const { elements } = useParams();
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+  const navigate = useNavigate();
 
   return (
     <div
@@ -15,7 +17,7 @@ const Elements = () => {
     >
       <div className="top w-full flex items-center justify-between">
         <div className="title flex items-center gap-1">
-          <button>
+          <button onClick={() => navigate("/structure")}>
             <IoIosArrowRoundBack className="text-[18px]" />
           </button>
           <p className="font-medium capitalize text-sm">{elements}</p>
