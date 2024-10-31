@@ -18,13 +18,16 @@ const ElementComp: React.FC<ElementCompProps> = ({ image, text, id }) => {
 
 
   return (
-    <div className="element w-full flex gap-3 items-center" onClick={()=>navigate(`/structure/${elements}/${id}`)}>
+    <div
+      className="element w-full flex gap-3 items-center cursor-pointer "
+      onClick={() => navigate(`/structure/${elements}/${id}`)}
+    >
       <img
-        src={image}
+        src={image ? image : "/file.png"}
         alt="image"
-        className="w-[33px] h-[33px] object-cover rounded-10"
+        className="w-[33px] h-[33px] object-cover rounded-10 md:w-[40px] md:h-[40px] lg:w-[45px] lg:h-[45px]"
       />
-      <p className='text-[13px] font-medium'>{text}</p>
+      <p className="text-[13px] font-medium capitalize lg:text-[15px]">{text}</p>
     </div>
   );
 }

@@ -6,8 +6,8 @@ const MainPage = () => {
 
 
   return (
-    <div className="w-full lg:grid lg:grid-cols-12">
-        <Structure />
+    <div className="w-full lg:grid lg:grid-cols-12 lg:gap-5">
+      <Structure />
       <Elements />
       <Details />
     </div>

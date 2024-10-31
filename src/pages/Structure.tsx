@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Structure = () => {
 
-  const [selectedStructure, setSelectedStructure] = useState(1);
+  const [selectedStructure, setSelectedStructure] = useState(0);
   const { elements } = useParams()
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
@@ -14,9 +14,9 @@ const Structure = () => {
 
   return (
     <div
-      className={`w-full mt-[80px] rounded-10 flex flex-col gap-3
+      className={`w-full mt-[80px] flex flex-col gap-3 overflow-auto
       ${isMobile && elements ? "hidden" : "block"}
-      lg:col-span-3`}
+      lg:col-span-2 lg:border-r lg:border-main lg:pr-5 sectionCss`}
     >
       {classes_array.map((item) => (
         <StructureComp

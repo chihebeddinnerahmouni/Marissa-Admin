@@ -13,24 +13,18 @@ const Details = () => {
     const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
     const navigate = useNavigate();
 
-
   return (
     <div
-      className={`w-full mt-20
-      ${isMobile ? (id ? "block" : "hidden") : "block"}
+      className={`w-full mt-20 
+      ${isMobile ? (id ? "block" : "hidden") : (id ? "block" : "hidden")}
+      lg:col-span-6 sectioCss
       `}
     >
-      <div className="top w-full flex items-center justify-between pb-7">
-        <div className="title flex items-center gap-1">
-          <button onClick={() => navigate(`/structure/${elements}`)}>
+          {/* <button className='lg:hidden' onClick={() => navigate(`/structure/${elements}`)}>
             <IoIosArrowRoundBack className="text-[18px]" />
-          </button>
-          <p className="font-medium capitalize text-sm">{id}</p>
-        </div>
-      </div>
+          </button> */}
 
-          
-          {elements === "categories" && <CategoryDetailsCont />}
+      {elements === "categories" && <CategoryDetailsCont />}
     </div>
   );
 }
