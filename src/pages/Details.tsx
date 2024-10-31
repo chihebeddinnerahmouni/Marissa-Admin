@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import { useParams } from 'react-router-dom'
 import CategoryDetailsCont from '../containers/details/CategoryDetailsCont'
+import FeaturesDetailsComp from '../containers/details/FeaturesDetailsComp'
 
 
 
@@ -18,6 +19,7 @@ const Details = () => {
       `}
     >
       {elements === "categories" && <CategoryDetailsCont />}
+      {elements === "features" && <FeaturesDetailsComp />}
     </div>
   );
 }
