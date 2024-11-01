@@ -1,39 +1,15 @@
-import { useState, useEffect } from "react";
-import LoadingLine from "../../components/ui/LoadingLine";
+import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import PublishButton from "../../components/ui/PublishButton";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const categoryJson = {
-  id: 1,
-  name: "boats",
-  image:
-    "https://smallboatsmonthly.com/wp-content/uploads/2023/01/1109216_cmyk.jpg",
-};
-
-const CategoryDetailsCont = () => {
-  const [category, setCategory] = useState<{
-    id: number;
-    name: string;
-    image: string;
-  }>({ id: 0, name: "", image: "" });
-  const [loading, setLoading] = useState(true);
+const RegionAddCont = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const navigate = useNavigate();
-  const { elements, id } = useParams();
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setCategory(categoryJson);
-      setName(categoryJson.name);
-      setImage(categoryJson.image);
-      setLoading(false);
-    }, 1000);
-  }, [id]);
+  const { elements } = useParams();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -45,10 +21,6 @@ const CategoryDetailsCont = () => {
       reader.readAsDataURL(file);
     }
   };
-
-  if (loading) {
-    return <LoadingLine />;
-  }
 
   const handlePublish = () => {
     console.log("Published");
@@ -64,15 +36,16 @@ const CategoryDetailsCont = () => {
           <IoIosArrowRoundBack className="text-[18px]" />
         </button>
         <p className="text-[13px] text-writingGrey lg:text-[15px]">
-          Categories
+          Regions
         </p>
         <h1 className="text-[21px] font-bold capitalize mt-1 lg:text-[25px]">
-          {category.name}
+          Add Region
         </h1>
 
         <div className="name w-full mt-7 flex flex-col gap-2">
           <p className="text-[13px] font-semibold lg:text-[15px]">Name</p>
           <input
+            placeholder="Region Name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -97,7 +70,7 @@ const CategoryDetailsCont = () => {
           </div>
 
           <img
-            src={image}
+            src={image ? image : "/add-image.png"}
             alt={name}
             className="w-full h-[300px] object-cover rounded-md md:h-[400px] lg:h-[500px]"
           />
@@ -110,5 +83,4 @@ const CategoryDetailsCont = () => {
     </div>
   );
 };
-
-export default CategoryDetailsCont;
+export default RegionAddCont;

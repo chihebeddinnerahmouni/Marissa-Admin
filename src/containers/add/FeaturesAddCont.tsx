@@ -1,44 +1,17 @@
-import { useState, useEffect } from "react";
-import LoadingLine from "../../components/ui/LoadingLine";
+import { useState } from "react";
 import PublishButton from "../../components/ui/PublishButton";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const featureJson = {
-  id: 1,
-  name: "wify"
-};
-
-const FeaturesDetailsComp = () => {
-    const [feature, setFeature] = useState<{
-        id: number;
-    name: string;
-  }>({ id: 0, name: ""});
-  const [loading, setLoading] = useState(true);
+const FeaturesAddCont = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  const { elements, id } = useParams();
-
-  useEffect(() => { 
-    setLoading(true);
-     setTimeout(() => {
-       setFeature(featureJson);
-       setName(featureJson.name);
-       setLoading(false);
-     }, 1000);
-  }, [id]);
-
-
-  if (loading) {
-    return <LoadingLine />;
-  }
+  const { elements } = useParams();
 
   const handlePublish = () => {
     console.log("Published");
   };
-
-
 
   return (
     <div className="pb-5 sectionCss overflow-auto pr-5 flex flex-col justify-between">
@@ -49,16 +22,15 @@ const FeaturesDetailsComp = () => {
         >
           <IoIosArrowRoundBack className="text-[18px]" />
         </button>
-        <p className="text-[13px] text-writingGrey lg:text-[15px]">
-          Features
-        </p>
+        <p className="text-[13px] text-writingGrey lg:text-[15px]">Features</p>
         <h1 className="text-[21px] font-bold capitalize mt-1 lg:text-[25px]">
-          {feature.name}
+          Add Feature
         </h1>
 
         <div className="name w-full mt-7 flex flex-col gap-2">
           <p className="text-[13px] font-semibold lg:text-[15px]">Name</p>
           <input
+            placeholder="Feature name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -74,4 +46,4 @@ const FeaturesDetailsComp = () => {
   );
 };
 
-export default FeaturesDetailsComp;
+export default FeaturesAddCont;

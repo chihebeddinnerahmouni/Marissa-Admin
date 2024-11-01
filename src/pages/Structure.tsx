@@ -6,10 +6,9 @@ import { useMediaQuery } from "react-responsive";
 
 const Structure = () => {
 
-  const [selectedStructure, setSelectedStructure] = useState(0);
   const { elements } = useParams()
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-
+  const [selectedStructure, setSelectedStructure] = useState(0);
 
 
   return (

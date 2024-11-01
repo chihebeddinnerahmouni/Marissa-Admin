@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import LoadingLine from "../components/ui/LoadingLine";
-import ElementComp from "../components/ui/ElementComp";
-
+import LoadingLine from "../../components/ui/LoadingLine";
+import ElementComp from "../../components/ui/ElementComp";
+import AddTop from "../../components/ui/AddTop";
 
 
 
@@ -35,7 +35,7 @@ const categoriesArray = [
 const CetegoriesCont = () => {
 
     const [loading, setLoading] = useState(true);
-    const [categories, setCategories] = useState<{id: number, name: string, image: string}[]>([]);
+  const [categories, setCategories] = useState<{ id: number, name: string, image: string }[]>([]);
 
     useEffect(() => {
       setTimeout(() => {
@@ -49,11 +49,18 @@ const CetegoriesCont = () => {
 if (loading) return <LoadingLine />;
 
   return (
+<>
+
+      
+
+<AddTop text="Categories" url="/structure/categories/add-category" />
     <div className="w-full flex flex-col gap-3">
           {categories.map((category) => (
               <ElementComp key={category.id} image={category.image} text={category.name} id={category.id} />
           ))}
     </div>
+</>
+
   )
 }
 

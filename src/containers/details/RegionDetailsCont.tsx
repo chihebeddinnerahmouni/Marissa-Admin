@@ -6,15 +6,16 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const categoryJson = {
+const regionJson = {
   id: 1,
-  name: "boats",
+  name: "KSA",
   image:
-    "https://smallboatsmonthly.com/wp-content/uploads/2023/01/1109216_cmyk.jpg",
+    "https://media.istockphoto.com/id/1248308148/photo/jeddah-corniche-aerial-view-2018.jpg?s=612x612&w=0&k=20&c=fK55MU6RxzClhcx8EsYo6xmwmty3kbzZQnImAvezujE=",
+    // "",
 };
 
-const CategoryDetailsCont = () => {
-  const [category, setCategory] = useState<{
+const RegionDetailsCont = () => {
+  const [region, setRegion] = useState<{
     id: number;
     name: string;
     image: string;
@@ -28,9 +29,9 @@ const CategoryDetailsCont = () => {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      setCategory(categoryJson);
-      setName(categoryJson.name);
-      setImage(categoryJson.image);
+      setRegion(regionJson);
+      setName(regionJson.name);
+      setImage(regionJson.image);
       setLoading(false);
     }, 1000);
   }, [id]);
@@ -64,10 +65,10 @@ const CategoryDetailsCont = () => {
           <IoIosArrowRoundBack className="text-[18px]" />
         </button>
         <p className="text-[13px] text-writingGrey lg:text-[15px]">
-          Categories
+          Regions
         </p>
         <h1 className="text-[21px] font-bold capitalize mt-1 lg:text-[25px]">
-          {category.name}
+          {region.name}
         </h1>
 
         <div className="name w-full mt-7 flex flex-col gap-2">
@@ -97,7 +98,7 @@ const CategoryDetailsCont = () => {
           </div>
 
           <img
-            src={image}
+            src={image ? image : "/add-image.png"}
             alt={name}
             className="w-full h-[300px] object-cover rounded-md md:h-[400px] lg:h-[500px]"
           />
@@ -111,4 +112,4 @@ const CategoryDetailsCont = () => {
   );
 };
 
-export default CategoryDetailsCont;
+export default RegionDetailsCont;
