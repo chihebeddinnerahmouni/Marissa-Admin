@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
-import Header from "./components/ui/Header"
+import TopBar from "./components/ui/TopBar";
+// import { useState } from "react";
 
 
 
@@ -7,9 +8,12 @@ function App() {
 
 
   return (
-    <div className="w-full px-4 md:px-[100px] lg:px-4">
-      <Header />
-      <Outlet />
+    <div className="w-full px-4 md:px-[40px] lg:px-[100px]">
+      <TopBar />
+      <div className="main mainCss mt-[60px] lg:mt-[80px]">
+        <Outlet />
+      </div>
+
     </div>
   );
 }

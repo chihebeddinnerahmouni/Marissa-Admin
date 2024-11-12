@@ -1,13 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #F7F7F7;
+  background-color: #F5F5F9;
+  font-family: "Georama", sans-serif;
 }
 
 
@@ -31,7 +34,16 @@ body {
   background: #c6c6c6;
 }
 
-/* sections height */
-.sectionCss {
-  height: calc(100vh - 80px);
+
+/* the height of the main div */
+.mainCss {
+min-height: calc(100vh - 60px);
 }
+@media screen and (min-width: 1045px) {
+  .mainCss {
+    min-height: calc(100vh - 80px);
+  }
+}
+
+
+
