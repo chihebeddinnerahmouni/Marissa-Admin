@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from "./pages/MainPage.tsx";
 import Users from "./pages/Users.tsx";
+import Regions from "./pages/Regions.tsx";
 
 
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/users", element: <Users /> },
       { path: "/features", element: <MainPage /> },
       { path: "/listings", element: <MainPage /> },
-      { path: "/regions", element: <MainPage /> },
+      { path: "/regions", element: <Regions /> },
     ],
   },
 ]);
