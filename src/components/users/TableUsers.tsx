@@ -11,9 +11,11 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { visuallyHidden } from "@mui/utils";
-import EditIcon from "@mui/icons-material/Edit";
+// import EditIcon from "@mui/icons-material/Edit";
 import { IoSearchSharp } from "react-icons/io5";
 import DeleteModal from "./DeleteUserModal";
+// import UpdateUserModal from "./UpdateUserModal";
+import DeleteAllUsersModal from "./DeleteAllUsersModal";
 import {
   TablePagination,
   Box,
@@ -34,7 +36,6 @@ interface Data {
 
 type Order = "asc" | "desc";
 
-
 interface HeadCell {
   disablePadding: boolean;
   id: keyof Data;
@@ -54,7 +55,6 @@ const headCells: readonly HeadCell[] = [
   { id: "phone", numeric: false, disablePadding: false, label: "Phone" },
   { id: "email", numeric: false, disablePadding: false, label: "Email" },
 ];
-
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) return -1;
@@ -152,17 +152,20 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  selected: readonly number[];
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected, searchQuery, setSearchQuery } = props;
+  const { numSelected, searchQuery, setSearchQuery, selected } = props;
+
+  const [deleteAllModal, setDeleteAllModal] = React.useState(false);
+
   return (
     <Toolbar
       sx={[
         {
           pl: { sm: 2 },
           pr: { xs: 1, sm: 1 },
-          // bgcolor: "rgba(255, 0, 0, 0.1)",
         },
 
         numSelected > 0 && {
@@ -195,25 +198,26 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search users by name"
-          className="p-2 pl-7 border rounded-40 outline-main font-semibold bg-emptyInput"
+          className="p-2 w-[100%] pl-7 border rounded-40 outline-main font-semibold bg-emptyInput md:w-auto"
         />
         <IoSearchSharp className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400 text-[18px]" />
       </div>
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
+          <>
+            <IconButton onClick={() => setDeleteAllModal(true)}>
+              <DeleteIcon className="text-main hover:text-mainHover" />
+            </IconButton>
+            {deleteAllModal && (
+              <DeleteAllUsersModal
+                setClose={() => setDeleteAllModal(false)}
+                selected={selected as number[]}
+              />
+            )}
+          </>
         </Tooltip>
-      ) : (
-        // <Tooltip title="Filter list">
-        //   <IconButton>
-        //     <FilterListIcon />
-        //   </IconButton>
-          // </Tooltip>
-          null
-      )}
+      ) : null}
     </Toolbar>
   );
 }
@@ -226,10 +230,12 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [deleteModalUserId, setDeleteModalUserId] = React.useState<number | null>(0);
+  const [deleteModalUserId, setDeleteModalUserId] = React.useState<
+    number | null
+  >(0);
+  // const [updateModalUserId, setUpdateModalUserId] = React.useState<number | null>(0);
 
-  // console.log(deleteModalUserId);
-
+  // console.log(selected);
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
@@ -300,6 +306,7 @@ export default function EnhancedTable() {
           numSelected={selected.length}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          selected={selected}
         />
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
@@ -375,18 +382,17 @@ export default function EnhancedTable() {
                           alignItems: "center",
                         }}
                       >
-                        <IconButton
+                        {/* <IconButton
                           onClick={(event) => {
                             event.stopPropagation();
-                            // handleEditClick(row.id);
+                            setUpdateModalUserId(user.id);
                           }}
                         >
                           <EditIcon className="text-main hover:text-mainHover" />
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                           onClick={(event) => {
                             event.stopPropagation();
-                            // setIsDeleteModalOpen(true);
                             setDeleteModalUserId(user.id);
                           }}
                         >
@@ -400,6 +406,12 @@ export default function EnhancedTable() {
                         user={user}
                       />
                     )}
+                    {/* {updateModalUserId === user.id && (
+                      <UpdateUserModal
+                        setClose={() => setUpdateModalUserId(null)}
+                        user={user}
+                      />
+                    )} */}
                   </TableRow>
                 );
               })}

@@ -56,9 +56,9 @@ const Users = () => {
                     />
                 ))}
             </div>
-            <div className="overflow-x-auto">
+            {/* <div className="overflow-x-auto w-full bg-green-200"> */}
                 <TableUsers />
-            </div>
+            {/* </div> */}
         </div>
     );
 }

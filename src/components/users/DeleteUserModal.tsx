@@ -12,7 +12,7 @@ ReactModal.setAppElement("#root");
 const DeleteModal: React.FC<DeleteModalProps> = ({ setClose, user }) => {
     
 
-    console.log(user);
+    // console.log(user);
 
 
     return (
