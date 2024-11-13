@@ -1,28 +1,27 @@
 import users from "../../assets/files/users_array";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import EditIcon from "@mui/icons-material/Edit";
 import { IoSearchSharp } from "react-icons/io5";
-
+import DeleteModal from "./DeleteUserModal";
+import {
+  TablePagination,
+  Box,
+  Paper,
+  TableContainer,
+  Table,
+  TableBody,
+} from "@mui/material";
 
 interface Data {
   id: number;
@@ -225,11 +224,12 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchQuery, setSearchQuery] = React.useState("");
+  const [deleteModalUserId, setDeleteModalUserId] = React.useState<number | null>(0);
 
-  // console.log(searchQuery);
+  // console.log(deleteModalUserId);
+
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
@@ -278,10 +278,6 @@ export default function EnhancedTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
   const filteredUsers = React.useMemo(
     () =>
       users.filter((user) =>
@@ -306,11 +302,7 @@ export default function EnhancedTable() {
           setSearchQuery={setSearchQuery}
         />
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
-          >
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -383,14 +375,31 @@ export default function EnhancedTable() {
                           alignItems: "center",
                         }}
                       >
-                        <IconButton>
-                          <EditIcon />
+                        <IconButton
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            // handleEditClick(row.id);
+                          }}
+                        >
+                          <EditIcon className="text-main hover:text-mainHover" />
                         </IconButton>
-                        <IconButton>
-                          <DeleteIcon />
+                        <IconButton
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            // setIsDeleteModalOpen(true);
+                            setDeleteModalUserId(user.id);
+                          }}
+                        >
+                          <DeleteIcon className="text-main hover:text-mainHover" />
                         </IconButton>
                       </Box>
                     </TableCell>
+                    {deleteModalUserId === user.id && (
+                      <DeleteModal
+                        setClose={() => setDeleteModalUserId(null)}
+                        user={user}
+                      />
+                    )}
                   </TableRow>
                 );
               })}
@@ -407,10 +416,6 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </Box>
   );
 }
