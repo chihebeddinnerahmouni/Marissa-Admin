@@ -11,10 +11,10 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { visuallyHidden } from "@mui/utils";
-// import EditIcon from "@mui/icons-material/Edit";
+import EditIcon from "@mui/icons-material/Edit";
 import { IoSearchSharp } from "react-icons/io5";
 import DeleteModal from "./DeleteUserModal";
-// import UpdateUserModal from "./UpdateUserModal";
+import UpdateUserModal from "./UpdateUserModal";
 import DeleteAllUsersModal from "./DeleteAllUsersModal";
 import AddUserModal from "./AddUserModal";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -241,7 +241,7 @@ export default function EnhancedTable() {
   const [deleteModalUserId, setDeleteModalUserId] = React.useState<
     number | null
   >(0);
-  // const [updateModalUserId, setUpdateModalUserId] = React.useState<number | null>(0);
+  const [updateModalUserId, setUpdateModalUserId] = React.useState<number | null>(0);
 
   // console.log(selected);
 
@@ -390,14 +390,14 @@ export default function EnhancedTable() {
                           alignItems: "center",
                         }}
                       >
-                        {/* <IconButton
+                        <IconButton
                           onClick={(event) => {
                             event.stopPropagation();
                             setUpdateModalUserId(user.id);
                           }}
                         >
                           <EditIcon className="text-main hover:text-mainHover" />
-                        </IconButton> */}
+                        </IconButton>
                         <IconButton
                           onClick={(event) => {
                             event.stopPropagation();
@@ -414,12 +414,12 @@ export default function EnhancedTable() {
                         user={user}
                       />
                     )}
-                    {/* {updateModalUserId === user.id && (
+                    {updateModalUserId === user.id && (
                       <UpdateUserModal
                         setClose={() => setUpdateModalUserId(null)}
                         user={user}
                       />
-                    )} */}
+                    )}
                   </TableRow>
                 );
               })}
