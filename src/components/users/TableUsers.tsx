@@ -128,6 +128,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
             sx={{ fontWeight: "bold" }}
+            className="text-nowrap"
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -370,10 +371,10 @@ export default function EnhancedTable() {
                         className="w-[40px] h-[40px] rounded-full"
                       />
                     </TableCell>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.role}</TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>{user.email}</TableCell>
+                    <TableCell className="text-nowrap">{user.name}</TableCell>
+                    <TableCell className="text-nowrap">{user.role}</TableCell>
+                    <TableCell className="text-nowrap">{user.phone}</TableCell>
+                    <TableCell className="text-nowrap">{user.email}</TableCell>
                     <TableCell align="right">
                       <Box
                         sx={{
