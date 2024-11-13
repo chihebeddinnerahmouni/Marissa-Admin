@@ -21,8 +21,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import EditIcon from "@mui/icons-material/Edit";
+import { IoSearchSharp } from "react-icons/io5";
 
-// Define the Data interface to match the structure of the `users` array
+
 interface Data {
   id: number;
   profilePic: string;
@@ -34,7 +35,7 @@ interface Data {
 
 type Order = "asc" | "desc";
 
-// Define the table columns (head cells)
+
 interface HeadCell {
   disablePadding: boolean;
   id: keyof Data;
@@ -55,7 +56,7 @@ const headCells: readonly HeadCell[] = [
   { id: "email", numeric: false, disablePadding: false, label: "Email" },
 ];
 
-// Comparator functions for sorting
+
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) return -1;
   if (b[orderBy] > a[orderBy]) return 1;
@@ -150,17 +151,21 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
+  const { numSelected, searchQuery, setSearchQuery } = props;
   return (
     <Toolbar
       sx={[
         {
           pl: { sm: 2 },
           pr: { xs: 1, sm: 1 },
+          // bgcolor: "rgba(255, 0, 0, 0.1)",
         },
+
         numSelected > 0 && {
           bgcolor: "rgba(255, 0, 0, 0.1)",
         },
@@ -185,6 +190,17 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Users
         </Typography>
       )}
+      <div className="search relative">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search users by name"
+          className="p-2 pl-7 border rounded-40 outline-main font-semibold bg-emptyInput"
+        />
+        <IoSearchSharp className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400 text-[18px]" />
+      </div>
+
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
@@ -192,11 +208,12 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+        // <Tooltip title="Filter list">
+        //   <IconButton>
+        //     <FilterListIcon />
+        //   </IconButton>
+          // </Tooltip>
+          null
       )}
     </Toolbar>
   );
@@ -210,6 +227,9 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  // console.log(searchQuery);
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
@@ -262,19 +282,29 @@ export default function EnhancedTable() {
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
   };
-
+  const filteredUsers = React.useMemo(
+    () =>
+      users.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+    [searchQuery]
+  );
   const visibleRows = React.useMemo(
     () =>
-      [...users]
+      [...filteredUsers]
         .sort(getComparator(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage, filteredUsers]
   );
 
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -346,7 +376,13 @@ export default function EnhancedTable() {
                     <TableCell>{user.phone}</TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell align="right">
-                      <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "center",
+                        }}
+                      >
                         <IconButton>
                           <EditIcon />
                         </IconButton>

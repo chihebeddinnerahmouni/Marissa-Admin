@@ -20,33 +20,36 @@ const UsersStat: React.FC<ItemP> = ({ Item }) => {
   const IconComponent = Item.icon;
 
   return (
-    <div className="min-w-[200px] p-4 bg-white border rounded-10 relative md:flex-grow">
+    <div className="min-w-[200px] p-4 bg-white shadow-sm border rounded-10 relative transition-transform transform hover:scale-[102%] cursor-default md:flex-grow ">
       <p className="text-sm text-nowrap font-semibold opacity-70 lg:text-base">
         {Item.title}
       </p>
-      <p className="font-bold text-[22px] lg:text-[28px] mt-2">{Item.number}</p>
+      <p className="font-bold text-[22px] lg:text-[32px] mt-2">{Item.number}</p>
 
       <div
-        className="icon absolute top-2 right-2 p-2 rounded-20"
+        className="icon absolute top-2 right-2 p-2 rounded-20 lg:p-3"
         style={{ backgroundColor: Item.bgColor }}
       >
-        <IconComponent className="text-[35px]" style={{ color: Item.color }} />
+        <IconComponent
+          className="text-[35px] lg:text-[45px]"
+          style={{ color: Item.color }}
+        />
       </div>
 
       <div className="flex items-center mt-5 gap-1">
         {Item.state === "up" ? (
-          <BsGraphUpArrow className="text-green-500" />
+          <BsGraphUpArrow className="text-green-500 lg:text-lg" />
         ) : (
-          <BsGraphDownArrow className="text-red-500" />
+          <BsGraphDownArrow className="text-red-500 lg:text-lg" />
         )}
         <p
-          className={`text-sm ${
+          className={`text-sm lg:text-lg ${
             Item.state === "up" ? "text-green-500" : "text-red-500"
           }`}
         >
           {Item.growth}%
         </p>
-        <p className="text-sm">From {Item.from}</p>
+        <p className="text-sm lg:text-lg">From {Item.from}</p>
       </div>
     </div>
   );
