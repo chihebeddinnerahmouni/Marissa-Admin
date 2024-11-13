@@ -16,6 +16,8 @@ import { IoSearchSharp } from "react-icons/io5";
 import DeleteModal from "./DeleteUserModal";
 // import UpdateUserModal from "./UpdateUserModal";
 import DeleteAllUsersModal from "./DeleteAllUsersModal";
+import AddUserModal from "./AddUserModal";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {
   TablePagination,
   Box,
@@ -160,6 +162,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { numSelected, searchQuery, setSearchQuery, selected } = props;
 
   const [deleteAllModal, setDeleteAllModal] = React.useState(false);
+  const [addUserModal, setAddUserModal] = React.useState(false);
 
   return (
     <Toolbar
@@ -193,13 +196,17 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Users
         </Typography>
       )}
+      <IconButton onClick={() => setAddUserModal(true)}>
+        <PersonAddIcon className="text-main hover:text-mainHover" />
+      </IconButton>
+      {addUserModal && <AddUserModal setClose={() => setAddUserModal(false)} />}
       <div className="search relative">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search users by name"
-          className="p-2 w-[100%] pl-7 border rounded-40 outline-main font-semibold bg-emptyInput md:w-auto"
+          className="p-2 w-[130px] pl-7 border rounded-40 outline-main font-semibold bg-emptyInput md:w-auto"
         />
         <IoSearchSharp className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400 text-[18px]" />
       </div>
