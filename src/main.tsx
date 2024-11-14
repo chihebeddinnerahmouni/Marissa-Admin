@@ -9,6 +9,7 @@ import english from "./locales/english.json";
 import arabic from "./locales/arabic.json";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import Categories from "./pages/Categories.tsx";
 
 
 
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <MainPage /> },
-      { path: "/categories", element: <MainPage /> },
+      { path: "/categories", element: <Categories /> },
       { path: "/users", element: <Users /> },
       { path: "/features", element: <MainPage /> },
       { path: "/listings", element: <MainPage /> },
@@ -63,6 +64,8 @@ i18n
       );
     });
   });
+
+
 
 
 

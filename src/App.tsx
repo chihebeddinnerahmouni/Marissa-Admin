@@ -1,9 +1,21 @@
 import { Outlet } from "react-router-dom"
 import TopBar from "./components/ui/TopBar";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 
 
 function App() {
+
+  const { i18n } = useTranslation();
+
+      useEffect(() => {
+        if (i18n.language === "ar") {
+          document.body.classList.add("arabic");
+        } else {
+          document.body.classList.remove("arabic");
+        }
+      }, [i18n.language]);
 
 
   return (

@@ -26,6 +26,7 @@ import {
   Table,
   TableBody,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface Data {
   id: number;
@@ -163,6 +164,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const [deleteAllModal, setDeleteAllModal] = React.useState(false);
   const [addUserModal, setAddUserModal] = React.useState(false);
+  const { t, i18n } = useTranslation();
 
   return (
     <Toolbar
@@ -206,9 +208,15 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search users by name"
-          className="p-2 w-[130px] pl-7 border rounded-40 outline-main font-semibold bg-emptyInput md:w-auto"
+          className={`p-2 w-[130px] border rounded-40 outline-main font-semibold bg-emptyInput md:w-[200px] ${
+            i18n.language === "ar" ? "pr-7" : "pl-7"
+          }`}
         />
-        <IoSearchSharp className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400 text-[18px]" />
+        <IoSearchSharp
+          className={`absolute top-1/2 transform -translate-y-1/2 text-gray-400 text-[18px] ${
+            i18n.language === "ar" ? "right-2" : "left-2"
+          }`}
+        />
       </div>
 
       {numSelected > 0 ? (

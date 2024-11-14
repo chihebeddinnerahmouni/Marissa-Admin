@@ -34,7 +34,7 @@ const classes = [
         id: 4,
         title: "listing",
         icon: ListIcon,
-        url: "listing",
+        url: "listings",
     },
     {
         id: 5,

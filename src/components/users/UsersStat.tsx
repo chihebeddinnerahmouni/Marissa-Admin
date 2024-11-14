@@ -1,6 +1,7 @@
 import React from "react";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { BsGraphDownArrow } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 interface ItemP {
   Item: {
@@ -17,7 +18,9 @@ interface ItemP {
 }
 
 const UsersStat: React.FC<ItemP> = ({ Item }) => {
+
   const IconComponent = Item.icon;
+  const { i18n } = useTranslation();
 
   return (
     <div className="min-w-[200px] p-4 bg-white shadow-sm border rounded-10 relative transition-transform transform hover:scale-[102%] cursor-default md:flex-grow ">
@@ -27,7 +30,7 @@ const UsersStat: React.FC<ItemP> = ({ Item }) => {
       <p className="font-bold text-[22px] lg:text-[32px] mt-2">{Item.number}</p>
 
       <div
-        className="icon absolute top-2 right-2 p-2 rounded-20 lg:p-3"
+        className={`icon absolute top-2 p-2 rounded-20 lg:p-3 ${i18n.language === "ar" ? "left-2" : "right-2"}`}
         style={{ backgroundColor: Item.bgColor }}
       >
         <IconComponent

@@ -1,1 +1,9 @@
-{}
+{
+  "home": "Home",
+  "categories": "Categories",
+  "users": "Users",
+  "features": "Features",
+  "listing": "Listing",
+  "regions": "Regions",
+  "admin": "Admin"
+}
