@@ -164,7 +164,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const [deleteAllModal, setDeleteAllModal] = React.useState(false);
   const [addUserModal, setAddUserModal] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Toolbar
