@@ -2,9 +2,18 @@ import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import SideBar from "./SideBar";
 import { useState } from "react";
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import DropDownMenuModal from "../top bar/DropDownMenuModal";
+import SwitchLanguagePc from "../top bar/SwitchLanguagePc";
+
+
+
 
 const TopBar = () => {
+
   const [open, setOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   return (
     <>
@@ -20,13 +29,20 @@ const TopBar = () => {
           <p className="text-[18px] font-bold lg:text-[28px]">Hello, John 👋</p>
         </div>
 
-        <img
-          src="/profilePic.png"
-          className="w-[40px] h-[40px] rounded-50 object-cover object-center lg:w-[50px] lg:h-[50px]"
-          alt="profilePic"
-        />
+        <div className="right flex items-center">
+          <SwitchLanguagePc />
+          <img
+            src="/profilePic.png"
+            className="w-[40px] h-[40px] rounded-50 object-cover object-center lg:w-[50px] lg:h-[50px]"
+            alt="profilePic"
+          />
+          <button className="items-center gap-2" onClick={()=>setIsMenuOpen(true)}>
+            <HiOutlineDotsVertical className="text-[28px]" />
+          </button>
+        </div>
       </div>
       <SideBar open={open} setOpen={setOpen} />
+      {isMenuOpen && <DropDownMenuModal setClose={setIsMenuOpen} />}
     </>
   );
 };
