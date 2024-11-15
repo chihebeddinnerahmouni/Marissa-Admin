@@ -30,9 +30,9 @@ const AddRegionModal: React.FC<UpdateModalProps> = ({ setClose }) => {
         <ReactModal
             isOpen={true}
             onRequestClose={() => setClose(false)}
-            className={"bg-white rounded-lg p-4 shadow-hardShadow lg:p-6"}
+            className={"bg-white rounded-lg p-4 shadow-hardShadow my-10 lg:p-6"}
             overlayClassName={
-                "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center p-4"
+                "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center px-4 py-20 mt-[60px]"
             }
         >
             <Typography variant="h4" component="h2" gutterBottom>
@@ -91,7 +91,7 @@ const AddRegionModal: React.FC<UpdateModalProps> = ({ setClose }) => {
                                 alignItems="center"
                                 justifyContent="center"
                                 width="100%"
-                                height="300px"
+                                height="200px"
                                 border="2px dashed grey"
                                 borderRadius="8px"
                             >
