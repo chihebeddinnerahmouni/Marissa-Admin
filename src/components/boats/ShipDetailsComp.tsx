@@ -12,7 +12,7 @@ const ShipDetails = ({ ship }: any) => {
   const urlUser = import.meta.env.VITE_SERVER_URL_USERS;
 
   const navigateTo = () => {
-    navigate(`/boat-details/${ship.id}`);
+    navigate(`boat-details/${ship.id}`);
   };
 
   const handleDelete = (e: React.MouseEvent) => {
@@ -60,7 +60,7 @@ const ShipDetails = ({ ship }: any) => {
       confirmButtonText: t("Yes, update it!"),
     }).then((result) => {
       if (result.isConfirmed) {
-        window.open(`/update-boat/${ship.id}`, "_blank");
+        window.open(`/listings/update-boat/${ship.id}`, "_blank");
       }
     });
   };

@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Images from "../../components/update boat/Images";
 
 
 
@@ -66,11 +67,11 @@ const UpdateBoat = () => {
     );
   }
 
-//   console.log(details);
+  // console.log(details);
 
   return (
     <>
-      <div className="content pb-10 pt-5 px-4 md:px-10 md:mx-auto md:w-[550px] xl:w-[650px]">
+      <div className="content pb-10 pt-5 px-4 md:px-10 md:mx-auto md:w-[650px]">
           <p className="text-[18px] lg:text-[20px] font-medium text-writingGrey mt-2 w-full self-start ellipsesCss">
             {details.title}
           </p>
@@ -82,7 +83,8 @@ const UpdateBoat = () => {
             "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1"
           }
         />
-         <Desc description={details.description} />
+        <Desc description={details.description} />
+        <Images images={details.Images} />
        <Prices prices={details.Prices} />
         <SpeceficDates prices={details.Prices} />
         <Region region={details.Region.name} />
@@ -114,7 +116,41 @@ const one = {
   region_id: 1,
   createdAt: "2024-11-02T17:15:25.000Z",
   updatedAt: "2024-11-05T11:53:15.000Z",
-  Images: [],
+  Images: [
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+    {
+      url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
+    },
+  ],
   Benefits: [],
   Availabilities: [
     {

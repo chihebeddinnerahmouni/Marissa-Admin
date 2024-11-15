@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       { path: "/features", element: <MainPage /> },
       { path: "/listings", element: <Boats /> },
       { path: "/regions", element: <Regions /> },
-      { path: "/update-boat/:boatId", element: <UpdateBoat /> },
+      { path: "/listings/update-boat/:boatId", element: <UpdateBoat /> },
     ],
   },
 ]);

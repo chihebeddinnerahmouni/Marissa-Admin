@@ -1,90 +1,89 @@
 import ShipDetails from "../../components/boats/ShipDetailsComp";
 import { useEffect, useState } from "react";
 import LoadingLine from "../../components/ui/LoadingLine";
-// import axios from "axios";
-// import Pagination from "@/components/ui/Pagination";
-// import { useNavigate, useLocation } from "react-router-dom";
-// import Swal from "sweetalert2";
-// import { useTranslation } from "react-i18next";
+import axios from "axios";
+import Pagination from "../../components/ui/Pagination";
+import { useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 import boats_array from "../../assets/files/boats_array";
 
 const BoatsCont = ({ selectedType }: any) => {
   const [shipsArray, setShipsArray] = useState<any>([]);
   const [loading, setLoading] = useState(true);
-//   const [totalPages, setTotalPages] = useState(1);
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//     const { t } = useTranslation();
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+  const location = useLocation();
+    const { t } = useTranslation();
     
     useEffect(() => {
-        setShipsArray(boats_array);
-        setLoading(false);
-        console.log(selectedType);
-
+        setShipsArray(boats_array.listings);
+      setLoading(false);
+      setTotalPages(boats_array.pagination.totalPages);
     }, []);
 
-//   const url = import.meta.env.VITE_SERVER_URL_LISTING;
-//   const fetchData = (page: number) => {
-//     axios
-//       .get(
-//         `${url}/api/listing/listings?page=${page}&categoryId=${selectedType}&sortBy=${listingOption}`
-//       )
-//       .then((response) => {
-//         setShipsArray(response.data.listings);
-//         setTotalPages(response.data.pagination.totalPages);
-//         setLoading(false);
-//         // console.log("ani hna");
-//       })
-//       .catch((error) => {
-//         setLoading(false);
-//         if (error.message === "Network Error") {
-//           Swal.fire({
-//             icon: "error",
-//             title: t("network_error"),
-//             text: t("please_try_again"),
-//             customClass: {
-//               confirmButton: "custom-confirm-button",
-//             },
-//           }).then(() => {
-//             window.location.reload();
-//           });
-//         } else {
-//           Swal.fire({
-//             icon: "error",
-//             title: "Error",
-//             text: t("please_try_again"),
-//             customClass: {
-//               confirmButton: "custom-confirm-button",
-//             },
-//           });
-//         }
-//       });
-//   };
+  const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  const fetchData = (page: number) => {
+    axios
+      .get(
+        `${url}/api/listing/listings?page=${page}&categoryId=${selectedType}`
+      )
+      .then((response) => {
+        setShipsArray(response.data.listings);
+        setTotalPages(response.data.pagination.totalPages);
+        setLoading(false);
+        // console.log("ani hna");
+      })
+      .catch((error) => {
+        setLoading(false);
+        if (error.message === "Network Error") {
+          Swal.fire({
+            icon: "error",
+            title: t("network_error"),
+            text: t("please_try_again"),
+            customClass: {
+              confirmButton: "custom-confirm-button",
+            },
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: t("please_try_again"),
+            customClass: {
+              confirmButton: "custom-confirm-button",
+            },
+          });
+        }
+      });
+  };
 
-//   useEffect(() => {
-//     const query = new URLSearchParams(location.search);
-//     const page = query.get("page");
-//     if (page) {
-//       const pageNumber = Number(page);
-//       if (pageNumber > 0 && pageNumber <= totalPages) {
-//         setCurrentPage(pageNumber);
-//       } else {
-//         navigate(`?page=1`, { replace: true });
-//       }
-//     } else {
-//       navigate(`?page=${currentPage}`, { replace: true });
-//     }
-//   }, [location.search, totalPages, navigate]);
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const page = query.get("page");
+    if (page) {
+      const pageNumber = Number(page);
+      if (pageNumber > 0 && pageNumber <= totalPages) {
+        setCurrentPage(pageNumber);
+      } else {
+        navigate(`?page=1`, { replace: true });
+      }
+    } else {
+      navigate(`?page=${currentPage}`, { replace: true });
+    }
+  }, [location.search, totalPages, navigate]);
 
-//   useEffect(() => {
-//     setLoading(true);
-//     fetchData(currentPage);
-//   }, [selectedType, currentPage, listingOption]);
+  useEffect(() => {
+    // setLoading(true);
+    // fetchData(currentPage);
+  }, [selectedType, currentPage]);
 
-//   useEffect(() => {
-//     navigate(`?page=${currentPage}`, { replace: true });
-//   }, [currentPage, navigate]);
+  useEffect(() => {
+    navigate(`?page=${currentPage}`, { replace: true });
+  }, [currentPage, navigate]);
 
   if (loading)
     return (
@@ -103,11 +102,11 @@ const BoatsCont = ({ selectedType }: any) => {
         </div>
       </div>
       <div className="pagination w-full mt-10">
-        {/* <Pagination
+        <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
-        /> */}
+        />
       </div>
     </>
   );

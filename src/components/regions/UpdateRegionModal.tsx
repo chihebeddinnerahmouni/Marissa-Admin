@@ -39,7 +39,7 @@ const UpdateRegionModal: React.FC<UpdateModalProps> = ({ setClose, region }) => 
       onRequestClose={() => setClose(false)}
       className={"bg-white rounded-lg p-4 shadow-hardShadow lg:p-6"}
       overlayClassName={
-        "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center p-4"
+        "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center p-4 mt-[60px] lg:mt-[80px]"
       }
     >
       <Typography variant="h4" component="h2" gutterBottom>
