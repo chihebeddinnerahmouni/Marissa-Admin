@@ -1,13 +1,15 @@
+import StatsCont from "../containers/mainPage/statsCont";
+
+
 
 
 const MainPage = () => {
-
-
   return (
-    <div className="w-full lg:grid lg:grid-cols-12 lg:gap-5">
-
+    <div className="content pt-6">
+      <StatsCont/>
+      
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

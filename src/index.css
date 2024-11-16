@@ -44,10 +44,12 @@ body {
 /* the height of the main div */
 .mainCss {
 min-height: calc(100vh - 60px);
+margin-top:60px ;
 }
 @media screen and (min-width: 1045px) {
   .mainCss {
     min-height: calc(100vh - 80px);
+    margin-top:80px ;
   }
 }
 
@@ -219,4 +221,15 @@ min-height: calc(100vh - 60px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* unselect text */
+.unselectableCss {
+user-select: none;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
 }

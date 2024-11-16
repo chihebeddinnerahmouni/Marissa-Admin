@@ -12,6 +12,7 @@ import { initReactI18next } from "react-i18next";
 import Categories from "./pages/Categories.tsx";
 import Boats from "./pages/boats/Boats.tsx";
 import UpdateBoat from "./pages/boats/UpdateBoat.tsx";
+import Help from "./pages/Help.tsx";
 
 
 
@@ -27,8 +28,10 @@ const router = createBrowserRouter([
       { path: "/users", element: <Users /> },
       { path: "/features", element: <MainPage /> },
       { path: "/listings", element: <Boats /> },
-      { path: "/regions", element: <Regions /> },
       { path: "/listings/update-boat/:boatId", element: <UpdateBoat /> },
+      { path: "/regions", element: <Regions /> },
+      { path: "/help", element: <Help /> },
+
     ],
   },
 ]);
