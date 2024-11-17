@@ -6,6 +6,10 @@ import {
   IoAddCircleOutline,
 } from "react-icons/io5";
 import CategoriesTable from "../components/categories/CategoriesTable";
+import AddCategoryModal from "../components/categories/AddCategoryModal";
+import { is } from "date-fns/locale";
+
+
 
 interface Category {
   id: number;
@@ -24,14 +28,10 @@ const Categories: React.FC = () => {
   const [newCategory, setNewCategory] = useState<string>("");
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [editingName, setEditingName] = useState<string>("");
+  const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
   const mainColor = "#FF385C";
 
-  const handleAddCategory = () => {
-    if (newCategory.trim()) {
-      setCategories([...categories, { id: Date.now(), name: newCategory }]);
-      setNewCategory("");  
-    }
-  };
+
 
 
   const handleEditCategory = (category: Category) => {
@@ -67,6 +67,7 @@ const Categories: React.FC = () => {
 
         {/* Add Category Section */}
         <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
+          {isAddCategoryModalOpen && <AddCategoryModal setClose={setIsAddCategoryModalOpen} />}
           <TextField
             label="Category Name"
             value={newCategory}
@@ -95,7 +96,7 @@ const Categories: React.FC = () => {
             }}
           />
           <button
-            onClick={handleAddCategory}
+            onClick={()=>setIsAddCategoryModalOpen(true)}
             className="flex items-center justify-center bg-main text-white text-[20px] rounded-lg min-w-[50px] h-full"
           >
             <IoAddCircleOutline />

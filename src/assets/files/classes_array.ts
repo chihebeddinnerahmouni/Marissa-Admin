@@ -5,6 +5,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import ListIcon from '@mui/icons-material/List';
 import PlaceIcon from '@mui/icons-material/Place';
 import HelpIcon from "@mui/icons-material/Help";
+import PublishIcon from "@mui/icons-material/Publish";
 
 
 const classes = [
@@ -49,6 +50,12 @@ const classes = [
     title: "help",
     icon: HelpIcon,
     url: "help",
+  },
+  {
+    id: 7,
+    title: "submissions",
+    icon: PublishIcon,
+    url: "submissions",
   },
 ];
 
