@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactModal from "react-modal";
-import { TextField, Button, Box, Typography, IconButton } from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import { Button, Box, Typography } from "@mui/material";
 
 interface UpdateModalProps {
   setClose: (isOpen: boolean) => void;
@@ -12,10 +11,10 @@ ReactModal.setAppElement("#root");
 const UpdateQsts: React.FC<UpdateModalProps> = ({ setClose }) => {
 
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-  };
+  // };
 
     
     // not used

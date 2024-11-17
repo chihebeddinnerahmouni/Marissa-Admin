@@ -11,7 +11,8 @@ const categories = [
 
 const Boats = () => {
 
-    const [ctegoriesArray, setCategoriesArray] = useState(categories);
+  // const [ctegoriesArray, setCategoriesArray] = useState(categories);
+  const ctegoriesArray = categories;
       const [selectedType, setSelectedType] = useState(categories[0].id);
 
 

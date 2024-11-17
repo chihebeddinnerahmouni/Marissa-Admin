@@ -1,5 +1,5 @@
 import FeaturesTable from '../components/features/FeaturesTable'
-import { useState } from 'react';
+// import { useState } from 'react';
 
 
 const rowsArray = [
@@ -13,8 +13,8 @@ const rowsArray = [
 
 const Features = () => {
 
-  const [rows, setRows] = useState<any>(rowsArray)
-  
+  // const [rows, setRows] = useState<any>(rowsArray)
+  const rows = rowsArray  
 
   return (
     <div className="p-4 md:p-8 lg:max-w-[1000px] mx-auto">

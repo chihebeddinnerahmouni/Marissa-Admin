@@ -7,7 +7,6 @@ import {
 } from "react-icons/io5";
 import CategoriesTable from "../components/categories/CategoriesTable";
 import AddCategoryModal from "../components/categories/AddCategoryModal";
-import { is } from "date-fns/locale";
 
 
 

@@ -2,7 +2,7 @@ import ReactModal from "react-modal";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaMinusCircle, FaCamera } from "react-icons/fa";
 
@@ -15,8 +15,8 @@ interface UpdatePricesProps {
 const UpdateImages: React.FC<UpdatePricesProps> = ({ setIsOpen, images }) => {
     const { t } = useTranslation();
       const [imageList, setImageList] = useState(images);
-  const { myBoatId } = useParams<{ myBoatId: string }>();
-  const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  // const { myBoatId } = useParams<{ myBoatId: string }>();
+  // const url = import.meta.env.VITE_SERVER_URL_LISTING;
 
   const removeImage = (index: number) => {
     const newImageList = imageList.filter((_: any, i: any) => i !== index);

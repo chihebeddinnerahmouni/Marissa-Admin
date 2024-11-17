@@ -14,7 +14,9 @@ const Availability = ({ availabilities }: any) => {
   const [visibleRows, setVisibleRows] = useState(4);
 
   const handleSeeMore = () => {
+    console.log(isOpen);
     setVisibleRows((prev) => prev + 4);
+
   };
 
   const handleSeeLess = () => {

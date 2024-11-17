@@ -7,12 +7,12 @@ import Region from "../../components/update boat/Region";
 import Guests from "../../components/update boat/Guests";
 import Availability from "../../components/update boat/Availability";
 import SpeceficDates from "../../components/update boat/SpeceficDates";
-import axios from "axios";
+// import axios from "axios";
 import LoadingLine from "../../components/ui/LoadingLine";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 import Images from "../../components/update boat/Images";
 
 
@@ -22,9 +22,9 @@ const UpdateBoat = () => {
 //   const { i18n, t } = useTranslation();
   const [details, setDetails] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const { boatId } = useParams<{ boatId: string }>();
-  const url = import.meta.env.VITE_SERVER_URL_LISTING;
-  const navigate = useNavigate();
+  // const { boatId } = useParams<{ boatId: string }>();
+  // const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  // const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);

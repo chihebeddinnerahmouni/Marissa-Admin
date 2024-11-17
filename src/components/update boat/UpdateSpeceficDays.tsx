@@ -4,8 +4,8 @@ import React from "react";
 import Swal from "sweetalert2";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { HiOutlineMinus } from "react-icons/hi";
-import { format } from "date-fns";
+// import { HiOutlineMinus } from "react-icons/hi";
+// import { format } from "date-fns";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import NumbersHandlers from "../../components/ui/NumbersHandlers";
@@ -21,8 +21,8 @@ const UpdateSpeceficDays: React.FC<UpdatePricesProps> = ({
   prices
 }) => {
   const { t } = useTranslation();
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  // const [startDate, setStartDate] = useState<Date | null>(null);
+  // const [endDate, setEndDate] = useState<Date | null>(null);
   const url = import.meta.env.VITE_SERVER_URL_LISTING;
     const { myBoatId } = useParams<{ myBoatId: string }>();
         const [showForm, setShowForm] = useState(false);

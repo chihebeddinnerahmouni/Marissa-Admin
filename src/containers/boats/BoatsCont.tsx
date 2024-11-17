@@ -1,11 +1,11 @@
 import ShipDetails from "../../components/boats/ShipDetailsComp";
 import { useEffect, useState } from "react";
 import LoadingLine from "../../components/ui/LoadingLine";
-import axios from "axios";
+// import axios from "axios";
 import Pagination from "../../components/ui/Pagination";
 import { useNavigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useTranslation } from "react-i18next";
+// import Swal from "sweetalert2";
+// import { useTranslation } from "react-i18next";
 import boats_array from "../../assets/files/boats_array";
 
 const BoatsCont = ({ selectedType }: any) => {
@@ -15,7 +15,7 @@ const BoatsCont = ({ selectedType }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const location = useLocation();
-    const { t } = useTranslation();
+    // const { t } = useTranslation();
     
     useEffect(() => {
         setShipsArray(boats_array.listings);
@@ -23,43 +23,43 @@ const BoatsCont = ({ selectedType }: any) => {
       setTotalPages(boats_array.pagination.totalPages);
     }, []);
 
-  const url = import.meta.env.VITE_SERVER_URL_LISTING;
-  const fetchData = (page: number) => {
-    axios
-      .get(
-        `${url}/api/listing/listings?page=${page}&categoryId=${selectedType}`
-      )
-      .then((response) => {
-        setShipsArray(response.data.listings);
-        setTotalPages(response.data.pagination.totalPages);
-        setLoading(false);
-        // console.log("ani hna");
-      })
-      .catch((error) => {
-        setLoading(false);
-        if (error.message === "Network Error") {
-          Swal.fire({
-            icon: "error",
-            title: t("network_error"),
-            text: t("please_try_again"),
-            customClass: {
-              confirmButton: "custom-confirm-button",
-            },
-          }).then(() => {
-            window.location.reload();
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: t("please_try_again"),
-            customClass: {
-              confirmButton: "custom-confirm-button",
-            },
-          });
-        }
-      });
-  };
+  // const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  // const fetchData = (page: number) => {
+  //   axios
+  //     .get(
+  //       `${url}/api/listing/listings?page=${page}&categoryId=${selectedType}`
+  //     )
+  //     .then((response) => {
+  //       setShipsArray(response.data.listings);
+  //       setTotalPages(response.data.pagination.totalPages);
+  //       setLoading(false);
+  //       // console.log("ani hna");
+  //     })
+  //     .catch((error) => {
+  //       setLoading(false);
+  //       if (error.message === "Network Error") {
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: t("network_error"),
+  //           text: t("please_try_again"),
+  //           customClass: {
+  //             confirmButton: "custom-confirm-button",
+  //           },
+  //         }).then(() => {
+  //           window.location.reload();
+  //         });
+  //       } else {
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: "Error",
+  //           text: t("please_try_again"),
+  //           customClass: {
+  //             confirmButton: "custom-confirm-button",
+  //           },
+  //         });
+  //       }
+  //     });
+  // };
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
