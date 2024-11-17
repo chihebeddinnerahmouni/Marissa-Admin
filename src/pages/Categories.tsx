@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import {
   TextField,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
 } from "@mui/material";
 import {
   IoAddCircleOutline,
-  IoPencilSharp,
-  IoTrashSharp,
 } from "react-icons/io5";
+import CategoriesTable from "../components/categories/CategoriesTable";
 
 interface Category {
   id: number;
@@ -38,13 +29,10 @@ const Categories: React.FC = () => {
   const handleAddCategory = () => {
     if (newCategory.trim()) {
       setCategories([...categories, { id: Date.now(), name: newCategory }]);
-      setNewCategory("");
+      setNewCategory("");  
     }
   };
 
-  const handleDeleteCategory = (id: number) => {
-    setCategories(categories.filter((category) => category.id !== id));
-  };
 
   const handleEditCategory = (category: Category) => {
     setEditingCategory(category);
@@ -62,7 +50,7 @@ const Categories: React.FC = () => {
       );
       setEditingCategory(null);
       setEditingName("");
-    }
+    }   
   };
 
   return (
@@ -75,6 +63,8 @@ const Categories: React.FC = () => {
           Explore and manage boat categories with detailed insights into each
           type of boat available for rental.
         </p>
+
+
         {/* Add Category Section */}
         <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
           <TextField
@@ -111,60 +101,17 @@ const Categories: React.FC = () => {
             <IoAddCircleOutline />
           </button>
         </div>
+        
         {/* Categories Table */}
-        <TableContainer component={Paper} className="rounded-lg">
-          <Table>
-            <TableHead className="bg-red-100 text-white">
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {categories.map((category) => (
-                <TableRow key={category.id}>
-                  <TableCell>
-                    {editingCategory && editingCategory.id === category.id ? (
-                      <TextField
-                        value={editingName}
-                        onChange={(e) => setEditingName(e.target.value)}
-                        variant="outlined"
-                        size="small"
-                      />
-                    ) : (
-                      category.name
-                    )}
-                  </TableCell>
-                  <TableCell align="right">
-                    {editingCategory && editingCategory.id === category.id ? (
-                      <button
-                        onClick={handleUpdateCategory}
-                        className="mr-2 bg-main text-white px-2 py-1 rounded-lg shadow-hoverShadow"
-                      >
-                        Save
-                      </button>
-                    ) : (
-                      <IconButton
-                        onClick={() => handleEditCategory(category)}
-                        className="text-main"
-                        size="small"
-                      >
-                        <IoPencilSharp />
-                      </IconButton>
-                    )}
-                    <IconButton
-                      onClick={() => handleDeleteCategory(category.id)}
-                      className="text-main"
-                      size="small"
-                    >
-                      <IoTrashSharp />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <CategoriesTable
+          handleEditCategory={handleEditCategory}
+          handleUpdateCategory={handleUpdateCategory}
+          categories={categories}
+          editingCategory={editingCategory}
+          setEditingCategory={setEditingCategory}
+          editingName={editingName}
+          setEditingName={setEditingName}
+        />
       </div>
     </div>
   );

@@ -93,8 +93,8 @@ const TableOfQuestions = ({ categoryId }: { categoryId: number }) => {
                   </td>
                 </tr>
                 {selectedQuestionId === question.id && (
-                  <tr>
-                    <td colSpan={2} className="border px-4 py-2">
+                  <tr className="bg-red-100 bg-opacity-50">
+                    <td colSpan={2} className="border px-4 py-2 ">
                       <div
                         dangerouslySetInnerHTML={{ __html: question.answer }}
                       />
