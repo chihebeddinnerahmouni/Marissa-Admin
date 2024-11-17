@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 // import axios from "axios";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { FaMinusCircle, FaCamera } from "react-icons/fa";
 
 
