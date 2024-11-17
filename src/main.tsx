@@ -13,6 +13,7 @@ import Categories from "./pages/Categories.tsx";
 import Boats from "./pages/boats/Boats.tsx";
 import UpdateBoat from "./pages/boats/UpdateBoat.tsx";
 import Help from "./pages/Help.tsx";
+import Features from "./pages/Features.tsx";
 
 
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       { path: "/", element: <MainPage /> },
       { path: "/categories", element: <Categories /> },
       { path: "/users", element: <Users /> },
-      { path: "/features", element: <MainPage /> },
+      { path: "/features", element: <Features /> },
       { path: "/listings", element: <Boats /> },
       { path: "/listings/update-boat/:boatId", element: <UpdateBoat /> },
       { path: "/regions", element: <Regions /> },
