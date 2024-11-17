@@ -20,6 +20,9 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import AcceptOneSubmission from "./AcceptOneSubmission";
+import DeleteOneSubmittion from "./DeleteOneSubmittion";
+import AcceptSelected from "./AcceptSelected";
+import DeleteSelectedSubmitions from "./DeleteSelectedSubmitions";
 
 interface Data {
   id: number;
@@ -127,8 +130,11 @@ interface EnhancedTableToolbarProps {
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { numSelected, searchQuery, setSearchQuery, selected } = props;
 
-    const [deleteAllModal, setDeleteAllModal] = React.useState(false);
-    const { i18n } = useTranslation();
+  const [deleteAllModal, setDeleteAllModal] = React.useState(false);
+  const [acceptAllModal, setAcceptAllModal] = React.useState(false);
+  const { i18n } = useTranslation();
+  
+
 
   return (
     <Toolbar
@@ -162,12 +168,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Submitions
         </Typography>
       )}
-      <IconButton>
-        <CheckIcon className="text-green-500" />
-      </IconButton>
-      <IconButton>
-        <DeleteIcon className="text-main" />
-      </IconButton>
       <div className="search relative">
         <input
           type="text"
@@ -186,13 +186,30 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       </div>
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <>
-            <IconButton onClick={() => setDeleteAllModal(true)}>
-              <DeleteIcon className="text-main hover:text-mainHover" />
-            </IconButton>
-          </>
-        </Tooltip>
+        <>
+          {acceptAllModal && (
+            <AcceptSelected
+              setClose={() => setDeleteAllModal(false)}
+              selected={selected}
+            />
+          )}
+          {deleteAllModal && (
+            <DeleteSelectedSubmitions
+              setClose={() => setDeleteAllModal(false)}
+              selected={selected}
+            />
+          )}
+          <Tooltip title="Delete">
+            <>
+              <IconButton onClick={() => setAcceptAllModal(true)}>
+                <CheckIcon className="text-green-500" />
+              </IconButton>
+              <IconButton onClick={() => setDeleteAllModal(true)}>
+                <DeleteIcon className="text-main hover:text-mainHover" />
+              </IconButton>
+            </>
+          </Tooltip>
+        </>
       ) : null}
     </Toolbar>
   );
@@ -369,12 +386,12 @@ export default function EnhancedTable({rows}: any) {
                         </IconButton>
                       </Box>
                     </TableCell>
-                    {/* {deleteModalUserId === user.id && (
-                      <DeleteModal
+                    {deleteModalUserId === user.id && (
+                      <DeleteOneSubmittion
                         setClose={() => setDeleteModalUserId(null)}
                         user={user}
                       />
-                    // )} */}
+                    )}
                     {acceptModalUserId === user.id && (
                       <AcceptOneSubmission
                         setClose={() => setAcceptModalUserId(null)}

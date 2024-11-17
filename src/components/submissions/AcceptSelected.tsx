@@ -2,18 +2,15 @@ import ReactModal from "react-modal";
 import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 
-
 interface DeleteModalProps {
   setClose: (isOpen: number) => void;
-  user: any;
+  selected: readonly number[];
 }
 ReactModal.setAppElement("#root");
 
-const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
-  setClose,
-  user,
-}) => {
-  // console.log(user);
+const AcceptSelected: React.FC<DeleteModalProps> = ({ setClose, selected }) => {
+  
+    // console.log(selected);
 
   return (
     <ReactModal
@@ -24,19 +21,13 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
         "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center"
       }
     >
-      <img
-        src={user.user.image}
-        className="w-20 h-20 rounded-full mx-auto object-cover object-center lg:w-24 lg:h-24"
-        alt="profile picture"
-      />
-
-      <h1 className="text-2xl font-bold text-center mt-4 lg:text-3xl">
+      {/* <h1 className="text-2xl font-bold text-center mt-4 lg:text-3xl">
         {user.name}
-      </h1>
+      </h1>*/}
       <p className="text-gray-500 text-center mt-1 lg:text-lg">
-        Do you want to <strong className="text-green-400">accept</strong> the submission of{" "}
-        <strong>{user.user.name}</strong>
-      </p>
+        Do you want to <strong className="text-green-400">accept</strong> all the selected {' '}
+         <strong>{selected.length}</strong> submissions ?
+      </p> 
 
       <div className="buttons flex w-full mt-7 gap-2">
         <button
@@ -62,4 +53,5 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
   );
 };
 
-export default AcceptOneSubmission;
+
+export default AcceptSelected;

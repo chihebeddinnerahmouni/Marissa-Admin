@@ -1,19 +1,18 @@
 import ReactModal from "react-modal";
 import React from "react";
-import CheckIcon from "@mui/icons-material/Check";
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface DeleteModalProps {
   setClose: (isOpen: number) => void;
-  user: any;
+  selected: readonly number[];
 }
 ReactModal.setAppElement("#root");
 
-const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
+const DeleteSelectedSubmitions: React.FC<DeleteModalProps> = ({
   setClose,
-  user,
+  selected,
 }) => {
-  // console.log(user);
+  // console.log(selected);
 
   return (
     <ReactModal
@@ -24,18 +23,12 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
         "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center"
       }
     >
-      <img
-        src={user.user.image}
-        className="w-20 h-20 rounded-full mx-auto object-cover object-center lg:w-24 lg:h-24"
-        alt="profile picture"
-      />
-
-      <h1 className="text-2xl font-bold text-center mt-4 lg:text-3xl">
+      {/* <h1 className="text-2xl font-bold text-center mt-4 lg:text-3xl">
         {user.name}
-      </h1>
+      </h1>*/}
       <p className="text-gray-500 text-center mt-1 lg:text-lg">
-        Do you want to <strong className="text-green-400">accept</strong> the submission of{" "}
-        <strong>{user.user.name}</strong>
+        Do you want to <strong className="text-red-400">accept</strong> all
+        the selected <strong>{selected.length}</strong> submissions ?
       </p>
 
       <div className="buttons flex w-full mt-7 gap-2">
@@ -49,17 +42,17 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
           Cancel
         </button>
         <button
-          className="w-full bg-green-500 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-1"
+          className="w-full bg-red-500 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-1"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <span>Accept</span>
-          <CheckIcon />
+          <span>Delete</span>
+          <DeleteIcon />
         </button>
       </div>
     </ReactModal>
   );
 };
 
-export default AcceptOneSubmission;
+export default DeleteSelectedSubmitions;

@@ -1,6 +1,6 @@
 import ReactModal from "react-modal";
 import React from "react";
-import CheckIcon from "@mui/icons-material/Check";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 
 interface DeleteModalProps {
@@ -9,7 +9,7 @@ interface DeleteModalProps {
 }
 ReactModal.setAppElement("#root");
 
-const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
+const DeleteOneSubmittion: React.FC<DeleteModalProps> = ({
   setClose,
   user,
 }) => {
@@ -34,7 +34,7 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
         {user.name}
       </h1>
       <p className="text-gray-500 text-center mt-1 lg:text-lg">
-        Do you want to <strong className="text-green-400">accept</strong> the submission of{" "}
+        Do you want to <strong className="text-red-400">delete</strong> the submission of{" "}
         <strong>{user.user.name}</strong>
       </p>
 
@@ -49,17 +49,20 @@ const AcceptOneSubmission: React.FC<DeleteModalProps> = ({
           Cancel
         </button>
         <button
-          className="w-full bg-green-500 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-1"
+          className="w-full bg-red-500 text-white px-4 py-2 rounded-lg flex items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();
           }}
-        >
-          <span>Accept</span>
-          <CheckIcon />
+              >
+                  <DeleteIcon />
+                  <span>
+                    Delete
+                  </span>
+          
         </button>
       </div>
     </ReactModal>
   );
 };
 
-export default AcceptOneSubmission;
+export default DeleteOneSubmittion;
