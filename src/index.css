@@ -233,3 +233,14 @@ user-select: none;
     -ms-user-select: none;
     /* Internet Explorer/Edge */
 }
+
+/* html editor */
+.ckeditor-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ckeditor-editor {
+  min-height: 200px;
+}
