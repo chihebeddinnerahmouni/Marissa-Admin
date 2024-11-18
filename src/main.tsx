@@ -15,7 +15,8 @@ import UpdateBoat from "./pages/boats/UpdateBoat.tsx";
 import Help from "./pages/Help.tsx";
 import Features from "./pages/Features.tsx";
 import Submissions from "./pages/Submissions.tsx";
-
+import Documents from "./pages/documents/Documents.tsx";
+import CheckDocuments from "./pages/documents/CheckDocuments.tsx";
 
 
 
@@ -34,7 +35,10 @@ const router = createBrowserRouter([
       { path: "/regions", element: <Regions /> },
       { path: "/help", element: <Help /> },
       { path: "/submissions", element: <Submissions /> },
-    ],
+      { path: "/documents", element: <Documents /> },
+      { path: "/documents/check-document/:documentsId", element: <CheckDocuments /> },
+      
+    ],  
   },
 ]);
 

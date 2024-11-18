@@ -57,6 +57,12 @@ const classes = [
     icon: PublishIcon,
     url: "submissions",
   },
+  {
+    id: 8,
+    title: "documents",
+    icon: PublishIcon,
+    url: "documents",
+  },
 ];
 
 export default classes;
