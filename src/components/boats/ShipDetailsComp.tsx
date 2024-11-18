@@ -60,7 +60,7 @@ const ShipDetails = ({ ship }: any) => {
       confirmButtonText: t("Yes, update it!"),
     }).then((result) => {
       if (result.isConfirmed) {
-        window.open(`/listings/update-boat/${ship.id}`, "_blank");
+        window.open(`/boats/update-boat/${ship.id}`, "_blank");
       }
     });
   };

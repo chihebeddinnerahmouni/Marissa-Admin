@@ -17,6 +17,7 @@ import Features from "./pages/Features.tsx";
 import Submissions from "./pages/Submissions.tsx";
 import Documents from "./pages/documents/Documents.tsx";
 import CheckDocuments from "./pages/documents/CheckDocuments.tsx";
+import MakeListings from "./pages/make listing/MakeListings.tsx";
 
 
 
@@ -30,13 +31,14 @@ const router = createBrowserRouter([
       { path: "/categories", element: <Categories /> },
       { path: "/users", element: <Users /> },
       { path: "/features", element: <Features /> },
-      { path: "/listings", element: <Boats /> },
-      { path: "/listings/update-boat/:boatId", element: <UpdateBoat /> },
+      { path: "/boats", element: <Boats /> },
+      { path: "/boats/update-boat/:boatId", element: <UpdateBoat /> },
       { path: "/regions", element: <Regions /> },
       { path: "/help", element: <Help /> },
       { path: "/submissions", element: <Submissions /> },
       { path: "/documents", element: <Documents /> },
       { path: "/documents/check-document/:documentsId", element: <CheckDocuments /> },
+      { path: "/listings", element: <MakeListings /> },
       
     ],  
   },
