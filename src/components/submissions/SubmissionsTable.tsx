@@ -189,7 +189,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         <>
           {acceptAllModal && (
             <AcceptSelected
-              setClose={() => setDeleteAllModal(false)}
+              setClose={() => setAcceptAllModal(false)}
               selected={selected}
             />
           )}

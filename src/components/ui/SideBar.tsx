@@ -34,7 +34,7 @@ export default function TemporaryDrawer({ open, setOpen }: { open: boolean, setO
       role="presentation"
       onClick={toggleDrawer(false)}
     >
-      <h1 className="text-center text-2xl font-bold mt-4 hidden lg:block">
+      <h1 className="text-center text-2xl font-bold mt-4">
         {t("admin")}
       </h1>
       <List className="space-y-1">

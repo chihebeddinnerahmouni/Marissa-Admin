@@ -1,12 +1,14 @@
 import React from "react";
 import ReactModal from "react-modal";
 import { Button, Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface DeleteModalProps {
   setClose: (isOpen: boolean) => void;
   category: {
     id: number;
-    name: string;
+    arName: string;
+    enName: string;
   };
 }
 
@@ -16,12 +18,16 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
   setClose,
   category
 }) => {
+
+  const { i18n } = useTranslation();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setClose(false);
   };
 
+
   // console.log(category);
+
   return (
     <ReactModal
       isOpen={true}
@@ -36,7 +42,10 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
       </Typography>
       <Typography variant="body1" gutterBottom>
         Are you sure you want to delete the region{" "}
-        <strong>{category.name}</strong>?
+        <strong>
+          {i18n.language === "ar" ? category.arName : category.enName}
+        </strong>
+        ?
       </Typography>
       <form onSubmit={handleSubmit}>
         <Box display="flex" justifyContent="flex-end" gap={2} mt={4}>

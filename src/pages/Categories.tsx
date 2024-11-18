@@ -12,45 +12,48 @@ import AddCategoryModal from "../components/categories/AddCategoryModal";
 
 interface Category {
   id: number;
-  name: string;
+  enName: string;
+  arName: string;
 }
 
 const initialCategories: Category[] = [
-  { id: 1, name: "Riyadh" },
-  { id: 2, name: "Jeddah" },
-  { id: 3, name: "Dammam" },
-  { id: 4, name: "Makkah" },
+  { id: 1, enName: "engine", arName: "محرك" },
+  { id: 2, enName: "sail", arName: "شراع" },
+  { id: 3, enName: "motor", arName: "موتور" },
+  { id: 4, enName: "yacht", arName: "يخت" },
+  { id: 5, enName: "fishing", arName: "صيد" },
+  { id: 6, enName: "cruise", arName: "رحلة بحرية" },
+  { id: 7, enName: "luxury", arName: "فخامة" },
+  { id: 8, enName: "speed", arName: "سرعة" },
+  { id: 9, enName: "party", arName: "حفلة" },
+  { id: 10, enName: "tour", arName: "جولة" },
+  { id: 11, enName: "diving", arName: "غوص" },
+  { id: 12, enName: "jet ski", arName: "جت سكي" },
+  { id: 13, enName: "kayak", arName: "كاياك" },
+  { id: 14, enName: "canoe", arName: "قارب كانو" },
+  { id: 15, enName: "paddle board", arName: "لوح تجديف" },
+  { id: 16, enName: "pedal boat", arName: "قارب بدال" },
+  { id: 17, enName: "banana boat", arName: "قارب موزي" },
+  { id: 18, enName: "ferry", arName: "عبارة" },
+  { id: 19, enName: "catamaran", arName: "قطارة" },
+  { id: 20, enName: "sailing boat", arName: "قارب شراعي" },
+  { id: 21, enName: "fishing boat", arName: "قارب صيد" },
+  { id: 22, enName: "cruise ship", arName: "سفينة سياحية" },
+
 ];
 
 const Categories: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
+  // const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const categories = initialCategories
   const [newCategory, setNewCategory] = useState<string>("");
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
-  const [editingName, setEditingName] = useState<string>("");
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
   const mainColor = "#FF385C";
 
 
 
 
-  const handleEditCategory = (category: Category) => {
-    setEditingCategory(category);
-    setEditingName(category.name);
-  };
+  
 
-  const handleUpdateCategory = () => {
-    if (editingCategory) {
-      setCategories(
-        categories.map((category) =>
-          category.id === editingCategory.id
-            ? { ...category, name: editingName }
-            : category
-        )
-      );
-      setEditingCategory(null);
-      setEditingName("");
-    }   
-  };
 
   return (
     <div className="p-4 md:p-8 lg:max-w-[700px] mx-auto">
@@ -104,13 +107,7 @@ const Categories: React.FC = () => {
         
         {/* Categories Table */}
         <CategoriesTable
-          handleEditCategory={handleEditCategory}
-          handleUpdateCategory={handleUpdateCategory}
           categories={categories}
-          editingCategory={editingCategory}
-          setEditingCategory={setEditingCategory}
-          editingName={editingName}
-          setEditingName={setEditingName}
         />
       </div>
     </div>

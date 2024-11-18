@@ -21,7 +21,7 @@ const DeleteOneSubmittion: React.FC<DeleteModalProps> = ({
       onRequestClose={() => setClose(0)}
       className={" bg-white rounded-lg p-4 shadow-hardShadow lg:p-6"}
       overlayClassName={
-        "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center"
+        "fixed bg-black bg-opacity-10 backdrop-blur-[7px] inset-0 flex items-center justify-center mt-[60px] lg:mt-[80px]"
       }
     >
       <img
@@ -34,8 +34,8 @@ const DeleteOneSubmittion: React.FC<DeleteModalProps> = ({
         {user.name}
       </h1>
       <p className="text-gray-500 text-center mt-1 lg:text-lg">
-        Do you want to <strong className="text-red-400">delete</strong> the submission of{" "}
-        <strong>{user.user.name}</strong>
+        Do you want to <strong className="text-red-400">delete</strong> the
+        submission of <strong>{user.user.name}</strong>
       </p>
 
       <div className="buttons flex w-full mt-7 gap-2">
@@ -53,12 +53,9 @@ const DeleteOneSubmittion: React.FC<DeleteModalProps> = ({
           onClick={(e) => {
             e.stopPropagation();
           }}
-              >
-                  <DeleteIcon />
-                  <span>
-                    Delete
-                  </span>
-          
+        >
+          <DeleteIcon />
+          <span>Delete</span>
         </button>
       </div>
     </ReactModal>
