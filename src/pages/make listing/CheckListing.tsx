@@ -23,7 +23,7 @@ const CheckListing = () => {
         listsing.
       </p>
 
-      <div className="buttons flex justify-end gap-4 mb-8">
+      <div className="buttons bg-creme h-[60px] flex justify-end items-center gap-4 mb-8 sticky top-[60px] lg:top-[80px] z-10">
         <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
           Accept
         </button>
