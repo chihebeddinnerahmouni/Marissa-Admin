@@ -13,6 +13,7 @@ import {
 } from "react-icons/io5";
 import DeleteCategoryModal from "./DeleteCategoryModal";
 import { useState } from "react";
+import AddCategoryModal from "./AddCategoryModal";
 
 const CategoriesTable = ({
   categories,
@@ -20,11 +21,13 @@ const CategoriesTable = ({
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+
 
   const handleDeleteClick = (category: any) => {
     setSelectedCategory(category);
     setIsDeleteOpen(true);
-  };
+  }
 
   return (
     <>
@@ -32,6 +35,11 @@ const CategoriesTable = ({
         <DeleteCategoryModal
           setClose={setIsDeleteOpen}
           category={selectedCategory}
+        />
+      )}
+      {isFormVisible && (
+        <AddCategoryModal
+          setClose={setIsFormVisible}
         />
       )}
       <TableContainer component={Paper} className="rounded-lg">
@@ -51,7 +59,7 @@ const CategoriesTable = ({
                 <IconButton
                   size="medium"
                   sx={{ color: "red" }}
-                  onClick={() => {}}
+                  onClick={() => setIsFormVisible(!isFormVisible)}
                 >
                   <IoAddCircleOutline />
                 </IconButton>

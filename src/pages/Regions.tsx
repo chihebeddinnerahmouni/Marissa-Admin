@@ -60,8 +60,9 @@ const Regions = () => {
         >
           + Add Region
         </button>
-        {isAddRegionOpen && <AddRegionModal setClose={setIsAddRegionOpen} />}
       </div>
+
+      {isAddRegionOpen && <AddRegionModal setClose={setIsAddRegionOpen} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {regions_array.map((region: any, index: number) => (
