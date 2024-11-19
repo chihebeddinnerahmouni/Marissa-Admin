@@ -20,8 +20,8 @@ import {
   TableBody,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-// import AcceptSelected from "./Acceptselected";
-// import DeleteSelected from "./DeleteSelected";
+import AcceptSelectedListings from "./AcceptSelectedListings";
+import DeleteSelectedListings from "./DeleteSelectedListings";
 
 interface Data {
   id: number;
@@ -121,8 +121,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const [deleteAllModal, setDeleteAllModal] = React.useState(false);
   const [acceptAllModal, setAcceptAllModal] = React.useState(false);
     const { i18n } = useTranslation();
-    console.log(deleteAllModal, acceptAllModal);
-console.log(selected);
   return (
     <Toolbar
       sx={[
@@ -174,18 +172,18 @@ console.log(selected);
 
       {numSelected > 0 ? (
         <>
-          {/* {acceptAllModal && (
-            <AcceptSelected
+          {acceptAllModal && (
+            <AcceptSelectedListings
               setClose={() => setAcceptAllModal(false)}
               selected={selected}
             />
           )}
           {deleteAllModal && (
-            <DeleteSelected
+            <DeleteSelectedListings
               setClose={() => setDeleteAllModal(false)}
               selected={selected}
             />
-          )} */}
+          )}
           <Tooltip title="Delete">
             <>
               <IconButton onClick={() => setAcceptAllModal(true)}>

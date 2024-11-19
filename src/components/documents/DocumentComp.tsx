@@ -5,6 +5,8 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
+import { FaDownload } from "react-icons/fa6";
+
 
 const DocumentComp = ({ document }: any) => {
   // console.log(document);
@@ -34,12 +36,12 @@ const DocumentComp = ({ document }: any) => {
           View {document.document.endsWith(".pdf") ? "Document" : "Image"}
         </Button>
         <Button
-          size="small"
+          // size="small"
           href={document.document}
           download
           sx={{ color: mainColor }}
         >
-          Download {document.document.endsWith(".pdf") ? "PDF" : "Image"}
+          <FaDownload />
         </Button>
       </CardActions>
     </Card>
