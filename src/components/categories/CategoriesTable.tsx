@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@mui/material";
 import {
-  IoTrashSharp
+  IoTrashSharp, IoAddCircleOutline
 } from "react-icons/io5";
 import DeleteCategoryModal from "./DeleteCategoryModal";
 import { useState } from "react";
@@ -36,16 +36,41 @@ const CategoriesTable = ({
       )}
       <TableContainer component={Paper} className="rounded-lg">
         <Table>
-          <TableHead className="bg-red-100 text-white">
+          <TableHead sx={{ fontSize: "bold" }}>
             <TableRow>
-              <TableCell>English Name</TableCell>
-              <TableCell>Arabic Name</TableCell>
-              <TableCell align="center">Actions</TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Picture
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                English Name
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Arabic Name
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                <IconButton
+                  size="medium"
+                  sx={{ color: "red" }}
+                  onClick={() => {}}
+                >
+                  <IoAddCircleOutline />
+                </IconButton>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {categories.map((category: any) => (
               <TableRow key={category.id}>
+                <TableCell
+                  align="center"
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <img
+                    src={category.image}
+                    alt={`${category.image}'s profile`}
+                    className="w-[40px] h-[40px] rounded-full object-cover object-center"
+                  />
+                </TableCell>
                 <TableCell align="center">{category.enName}</TableCell>
                 <TableCell align="center">{category.arName}</TableCell>
                 <TableCell align="center">

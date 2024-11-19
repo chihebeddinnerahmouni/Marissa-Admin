@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import {
-  IoAddCircleOutline,
-} from "react-icons/io5";
+import React
+// {, useState }
+  from "react";
+// import {
+//   IoAddCircleOutline,
+// } from "react-icons/io5";
 import CategoriesTable from "../components/categories/CategoriesTable";
-import AddCategoryModal from "../components/categories/AddCategoryModal";
+// import AddCategoryModal from "../components/categories/AddCategoryModal";
 
 
 
@@ -11,13 +13,14 @@ interface Category {
   id: number;
   enName: string;
   arName: string;
+  image?: string;
 }
 
 
 const Categories: React.FC = () => {
   // const [categories, setCategories] = useState<Category[]>(initialCategories);
   const categories = initialCategories
-  const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
+  // const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
   // const mainColor = "#FF385C";
 
 
@@ -40,7 +43,7 @@ const Categories: React.FC = () => {
         </p>
 
         {/* Add Category Section */}
-        <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
+        {/* <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
           {isAddCategoryModalOpen && (
             <AddCategoryModal setClose={setIsAddCategoryModalOpen} />
           )}
@@ -51,7 +54,7 @@ const Categories: React.FC = () => {
           >
             <IoAddCircleOutline />
           </button>
-        </div>
+        </div> */}
 
         {/* Categories Table */}
         <CategoriesTable categories={categories} />
@@ -63,26 +66,8 @@ const Categories: React.FC = () => {
 export default Categories;
 
 const initialCategories: Category[] = [
-  { id: 1, enName: "engine", arName: "محرك" },
-  { id: 2, enName: "sail", arName: "شراع" },
-  { id: 3, enName: "motor", arName: "موتور" },
-  { id: 4, enName: "yacht", arName: "يخت" },
-  { id: 5, enName: "fishing", arName: "صيد" },
-  { id: 6, enName: "cruise", arName: "رحلة بحرية" },
-  { id: 7, enName: "luxury", arName: "فخامة" },
-  { id: 8, enName: "speed", arName: "سرعة" },
-  { id: 9, enName: "party", arName: "حفلة" },
-  { id: 10, enName: "tour", arName: "جولة" },
-  { id: 11, enName: "diving", arName: "غوص" },
-  { id: 12, enName: "jet ski", arName: "جت سكي" },
-  { id: 13, enName: "kayak", arName: "كاياك" },
-  { id: 14, enName: "canoe", arName: "قارب كانو" },
-  { id: 15, enName: "paddle board", arName: "لوح تجديف" },
-  { id: 16, enName: "pedal boat", arName: "قارب بدال" },
-  { id: 17, enName: "banana boat", arName: "قارب موزي" },
-  { id: 18, enName: "ferry", arName: "عبارة" },
-  { id: 19, enName: "catamaran", arName: "قطارة" },
-  { id: 20, enName: "sailing boat", arName: "قارب شراعي" },
-  { id: 21, enName: "fishing boat", arName: "قارب صيد" },
-  { id: 22, enName: "cruise ship", arName: "سفينة سياحية" },
+  { id: 1, enName: "engine", arName: "محرك", image: "hirbae.jpg" },
+  { id: 2, enName: "sail", arName: "شراع", image: "hirbae.jpg" },
+  { id: 3, enName: "motor", arName: "موتور", image: "hirbae.jpg" },
+  { id: 4, enName: "yacht", arName: "يخت", image: "hirbae.jpg" },
 ];
