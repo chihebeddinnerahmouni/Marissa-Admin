@@ -2,7 +2,7 @@ import { IoMdBoat } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 const Guests = ({ category }: any) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="w-full p-4 bg-white mt-5 rounded-10 shadow-sm relative">

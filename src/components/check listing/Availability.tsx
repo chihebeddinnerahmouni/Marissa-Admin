@@ -7,12 +7,9 @@ import { useState } from "react";
 const Availability = ({ availabilities }: any) => {
   const { t, i18n } = useTranslation();
   const currentLocale = i18n.language === "ar" ? ar : undefined;
-  const isArabic = i18n.language === "ar";
-  const [isOpen, setIsOpen] = useState(false);
   const [visibleRows, setVisibleRows] = useState(4);
 
   const handleSeeMore = () => {
-    console.log(isOpen);
     setVisibleRows((prev) => prev + 4);
 
   };
