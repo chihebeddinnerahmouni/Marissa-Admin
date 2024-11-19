@@ -14,7 +14,7 @@ import Location from "../../components/check listing/Location";
 
 const CheckListing = () => {
   return (
-    <div className="p-4 md:p-8 lg:max-w-[700px] mx-auto pb-10">
+    <div className="p-4 md:p-8 lg:max-w-[700px] mx-auto pb-10 px-4 md:px-[40px]">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
         Documents for {listing.owner.name} {listing.owner.surname}
       </h1>
@@ -30,21 +30,19 @@ const CheckListing = () => {
         <button className="bg-main text-white px-4 py-2 rounded hover:bg-mainHover">
           Refuse
         </button>
-          </div>
-          
+      </div>
 
-
-          <Name title={listing.title} />
-          <Desc description={listing.description} />
-          <Images images={listing.Images} />
-          <Category category={listing.category} />
-          <Features features={listing.Features} />
-          <Prices prices={listing.Prices} />
-          <SpeceficDates prices={listing.Prices} />
-          <Region region={listing.region} />
-          <Guests guests={listing.guests} />
-          <Availability availabilities={listing.Availabilities} />
-            <Location latitude={listing.latitude} longitude={listing.longitude} />
+      <Name title={listing.title} />
+      <Desc description={listing.description} />
+      <Images images={listing.Images} />
+      <Category category={listing.category} />
+      <Features features={listing.Features} />
+      <Prices prices={listing.Prices} />
+      <SpeceficDates prices={listing.Prices} />
+      <Region region={listing.region} />
+      <Guests guests={listing.guests} />
+      <Availability availabilities={listing.Availabilities} />
+      <Location latitude={listing.latitude} longitude={listing.longitude} />
     </div>
   );
 }

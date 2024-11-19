@@ -17,7 +17,7 @@ const Boats = () => {
 
 
   return (
-    <div className="p-4 md:p-8 mx-auto lg:max-w-[1700px]">
+    <div className="p-4 md:p-8 mx-auto px-4 md:px-[40px] lg:px-[100px] lg:max-w-[1700px] ">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
         Listing Management
       </h1>
@@ -29,8 +29,8 @@ const Boats = () => {
         shipsTypes={ctegoriesArray}
         selectedType={selectedType}
         setSelectedType={setSelectedType}
-          />
-        <BoatsCont selectedType={selectedType} />
+      />
+      <BoatsCont selectedType={selectedType} />
     </div>
   );
 }

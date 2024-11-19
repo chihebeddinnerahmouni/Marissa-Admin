@@ -27,7 +27,9 @@ const Categories: React.FC = () => {
 
 
   return (
-     <div className={`p-4 md:p-8 lg:max-w-[700px] mx-auto `}>
+    <div
+      className={`md:p-8 mx-auto px-4 md:px-[40px] lg:max-w-[700px]`}
+    >
       <div className="">
         <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
           Categories Management
@@ -37,23 +39,22 @@ const Categories: React.FC = () => {
           type of boat available for rental.
         </p>
 
-
         {/* Add Category Section */}
         <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
-          {isAddCategoryModalOpen && <AddCategoryModal setClose={setIsAddCategoryModalOpen} />}
-          
+          {isAddCategoryModalOpen && (
+            <AddCategoryModal setClose={setIsAddCategoryModalOpen} />
+          )}
+
           <button
-            onClick={()=>setIsAddCategoryModalOpen(true)}
+            onClick={() => setIsAddCategoryModalOpen(true)}
             className="flex items-center justify-center bg-main text-white text-[20px] rounded-lg min-w-[50px] h-full"
           >
-          <IoAddCircleOutline />
+            <IoAddCircleOutline />
           </button>
         </div>
-        
+
         {/* Categories Table */}
-        <CategoriesTable
-          categories={categories}
-        />
+        <CategoriesTable categories={categories} />
       </div>
     </div>
   );

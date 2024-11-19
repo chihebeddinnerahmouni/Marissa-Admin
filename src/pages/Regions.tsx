@@ -43,7 +43,7 @@ const Regions = () => {
 
 
   return (
-    <div className="p-4 md:p-8 lg:max-w-[1100px] mx-auto">
+    <div className="p-4 md:p-8 lg:max-w-[1100px] px-4 md:px-[40px] lg:px-[100px] mx-auto">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-2 text-center">
         Regions Management
       </h1>

@@ -1,24 +1,39 @@
 import BookingItemComp from "../../components/booking/BokkingItemComp";
 // import LoadingLine from "@/components/ui/LoadingLine";
-// import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
-// import { useMediaQuery } from "react-responsive";
+import {
+  // useState,
+  useEffect
+} from "react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 // import { collection, onSnapshot, query, where } from "firebase/firestore";
 // import { db } from "../../../firebaseConfig";
 // import Filter from "@/components/inbox/Filter";
 // import options from "@/assets/files/inbox/filter_categories";
 
 const BookingList = () => {
+
+
+
+
 //   const [loading, setLoading] = useState(true);
 //   const [originalConversations, setOriginalConversations] = useState<any>([]);
 //   const [filteredConversations, setFilteredConversations] = useState<any>([]);
 //   const [selectedFilter, setSelectedFilter] = useState<string>(options[0]);
-//   const navigate = useNavigate();
-//   const { inboxId } = useParams<{ inboxId: string }>();
-//   const isMobile = useMediaQuery({ query: "(max-width: 1045px)" });
+  const navigate = useNavigate();
+  const { bookingId } = useParams<{ bookingId: string }>();
+  const isMobile = useMediaQuery({ query: "(max-width: 1045px)" });
 //   const userId = Number(localStorage.getItem("userId"));
   // const isBoatOwner = localStorage.getItem("isBoatOwner");
+
+
+    useEffect(() => { 
+    if (!bookingId && !isMobile) {
+      navigate(`/bookings/${bookings[0].conversationId}`);
+      return;
+    }
+  }, []);
 
 //   useEffect(() => {
 //     const fetchConversations = async () => {
@@ -76,7 +91,7 @@ const BookingList = () => {
         selectedFilter={selectedFilter}
         setSelectedFilter={setSelectedFilter}
       /> */}
-      <div className="items w-full mt-5 flex flex-col gap-4 ">
+      <div className="items w-full mt-0 flex flex-col gap-4">
         {bookings.map((inboxItem: any, index: number) => (
           <BookingItemComp key={index} item={inboxItem} />
         ))}
@@ -93,6 +108,154 @@ const BookingList = () => {
 export default BookingList;
 
 const bookings = [
+  {
+    conversationId: 1,
+    status: "ongoing",
+
+    createdAt: {
+      seconds: 1665360000,
+      nanoseconds: 123456789,
+    },
+
+    listingDetails: {
+      image: "hirbae.jpg",
+      boatname: "Boat name",
+    },
+
+    boatOwnerDetails: {},
+
+    clientDetails: {
+      id: 1,
+      name: "John",
+      surname: "Doe",
+      image: "john.jpg",
+    },
+
+    booking_info: {
+      preferredDate: "2022-10-10",
+      duration: {
+        hours: 2,
+        minutes: 30,
+        nights: 0,
+      },
+      groupSize: {
+        adults: 2,
+        children: 1,
+        infants: 0,
+      },
+    },
+  },
+  {
+    conversationId: 1,
+    status: "ongoing",
+
+    createdAt: {
+      seconds: 1665360000,
+      nanoseconds: 123456789,
+    },
+
+    listingDetails: {
+      image: "hirbae.jpg",
+      boatname: "Boat name",
+    },
+
+    boatOwnerDetails: {},
+
+    clientDetails: {
+      id: 1,
+      name: "John",
+      surname: "Doe",
+      image: "john.jpg",
+    },
+
+    booking_info: {
+      preferredDate: "2022-10-10",
+      duration: {
+        hours: 2,
+        minutes: 30,
+        nights: 0,
+      },
+      groupSize: {
+        adults: 2,
+        children: 1,
+        infants: 0,
+      },
+    },
+  },
+  {
+    conversationId: 1,
+    status: "ongoing",
+
+    createdAt: {
+      seconds: 1665360000,
+      nanoseconds: 123456789,
+    },
+
+    listingDetails: {
+      image: "hirbae.jpg",
+      boatname: "Boat name",
+    },
+
+    boatOwnerDetails: {},
+
+    clientDetails: {
+      id: 1,
+      name: "John",
+      surname: "Doe",
+      image: "john.jpg",
+    },
+
+    booking_info: {
+      preferredDate: "2022-10-10",
+      duration: {
+        hours: 2,
+        minutes: 30,
+        nights: 0,
+      },
+      groupSize: {
+        adults: 2,
+        children: 1,
+        infants: 0,
+      },
+    },
+  },
+  {
+    conversationId: 1,
+    status: "ongoing",
+
+    createdAt: {
+      seconds: 1665360000,
+      nanoseconds: 123456789,
+    },
+
+    listingDetails: {
+      image: "hirbae.jpg",
+      boatname: "Boat name",
+    },
+
+    boatOwnerDetails: {},
+
+    clientDetails: {
+      id: 1,
+      name: "John",
+      surname: "Doe",
+      image: "john.jpg",
+    },
+
+    booking_info: {
+      preferredDate: "2022-10-10",
+      duration: {
+        hours: 2,
+        minutes: 30,
+        nights: 0,
+      },
+      groupSize: {
+        adults: 2,
+        children: 1,
+        infants: 0,
+      },
+    },
+  },
   {
     conversationId: 1,
     status: "ongoing",

@@ -2,15 +2,16 @@ import SubmissionsTable from "../components/submissions/SubmissionsTable";
 
 const Submissions = () => {
   return (
-    <div className="p-4 md:p-8 lg:max-w-[1000px] mx-auto">
+    <div className="p-4 md:p-8 lg:max-w-[1000px] mx-auto px-4 md:px-[40px] lg:px-[100px]">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
         Submittions Management
       </h1>
       <p className="text-sm md:text-base text-gray-600 mb-8">
-        Explore and manage Users Submissions with detailed insights into each Submission.
-          </p>
-          
-          <SubmissionsTable rows={submittions} />
+        Explore and manage Users Submissions with detailed insights into each
+        Submission.
+      </p>
+
+      <SubmissionsTable rows={submittions} />
     </div>
   );
 }

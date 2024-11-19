@@ -19,26 +19,22 @@ const Bookings = () => {
 //   }, []);
 
   return (
-    <div className="w-full mt-[60px] flex lg:mt-[80px] lg:pb-0 md:justify-center bg-green-400 h-screen">
+    <div className="w-full mt-[60px] flex lg:mt-[80px] md:justify-center lg:pb-0">
       {bookingId && isMobile ? null : (
-        <div className="list w-full pt-5 relative lg:w-[350px] px-3 overflow-auto bg-creme pb-5 z-10 lg:px-2 inboxListCss md:w-[550px]">
+        <div className="list w-full pt-5 relative lg:w-[350px] px-3 overflow-auto pb-5 z-10 lg:px-2 inboxListCss md:w-[550px]">
           <BookingList />
         </div>
       )}
 
-      {bookingId ? 
-        isMobile && <BookingDetailsCont />
-       : null}
-
-      {/* {inboxId ? (
+      {bookingId ? (
         isMobile ? (
-          <InboxInquiry />
+          <BookingDetailsCont />
         ) : (
-          <InboxInquiry />
+          <BookingDetailsCont />
         )
       ) : isMobile ? null : (
-        <MessagesTrips />
-      )} */}
+        null
+      )}
     </div>
   );
 };

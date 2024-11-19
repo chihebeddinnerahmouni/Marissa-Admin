@@ -42,22 +42,21 @@ const users_array = () => [
 
 const Users = () => {
     return (
-        <div className="p-4 md:p-8 lg:max-w-[1100px] mx-auto">
-            <div className="">
-                <h1 className="text-2xl md:text-4xl font-bold">User Management</h1>
-                <p className="text-sm md:text-base text-gray-600">Manage all the users in the system</p>
-            </div>
-
-            <div className="stats my-4 flex gap-2 overflow-auto py-1">
-                {users_array().map((user) => (
-                    <UserStat
-                        key={user.id}
-                        Item={user}
-                    />
-                ))}
-            </div>
-                <TableUsers />
+      <div className="p-4 md:p-8 lg:max-w-[1100px] mx-auto px-4 md:px-[40px] lg:px-[100px]">
+        <div className="">
+          <h1 className="text-2xl md:text-4xl font-bold">User Management</h1>
+          <p className="text-sm md:text-base text-gray-600">
+            Manage all the users in the system
+          </p>
         </div>
+
+        <div className="stats my-4 flex gap-2 overflow-auto py-1">
+          {users_array().map((user) => (
+            <UserStat key={user.id} Item={user} />
+          ))}
+        </div>
+        <TableUsers />
+      </div>
     );
 }
 

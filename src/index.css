@@ -244,3 +244,12 @@ user-select: none;
 .ckeditor-editor {
   min-height: 200px;
 }
+
+.inboxListCss {
+    height: calc(100vh - 60px);
+}
+@media screen and (min-width: 1045px) {
+    .inboxListCss {
+        height: calc(100vh - 80px);
+    } 
+}

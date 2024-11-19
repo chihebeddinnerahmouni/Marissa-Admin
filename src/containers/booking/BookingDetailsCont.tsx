@@ -1,18 +1,21 @@
 import Top from "../../components/booking/Top";
+import Bookingdetails from "./Bookingdetails";
+import BookingMessages from "./BookingMessages";
 import {
     useState,
     // useEffect
 } from "react";
-// import InquiryDetails from "./InquiryDetails";
-// import InquiryMessages from "./InquiryMessages";
 // import LoadingLine from "@/components/ui/LoadingLine";
 // import { useParams } from "react-router-dom";
 // import { db } from "../../../firebaseConfig";
 // import { collection, onSnapshot, query, where } from "firebase/firestore";
 // import { useNavigate } from "react-router-dom";
 
+
+
+
 const BookingDetailsCont = () => {
-  const [selected, setSelected] = useState("details");
+  const [selected, setSelected] = useState("messages");
 //   const [loading, setLoading] = useState(true);
 //   const [details, setDetails] = useState<any>(null);
 //   const { inboxId } = useParams<{ inboxId: string }>();
@@ -61,13 +64,11 @@ const BookingDetailsCont = () => {
 
   return (
     <div
-      className={`flex-grow flex flex-col items-center pb-10 md:px-10 md:pb-[40px] inboxList lg:pb-[75px] bg-creme overflow-auto`}
+      className={`flex-grow flex flex-col items-center pb-10 md:px-10 inboxListCss overflow-auto`}
     >
       <Top selected={selected} setSelected={setSelected} details={details[0]} />
-      {/* {selected === "details" && (
-        <InquiryDetails details={details} setSelected={setSelected} />
-      )} */}
-      {/* {selected === "messages" && <InquiryMessages details={details} />} */}
+      {selected === "details" && <Bookingdetails details={details} />}
+      {selected === "messages" && <BookingMessages details={details} />}
     </div>
   );
 };
@@ -86,8 +87,9 @@ const details = [
     },
 
     listingDetails: {
-      image: "hirbae.jpg",
-      boatname: "Boat name",
+      image:
+        "uploads/1731950771197-Prtag0XQANIJft7UhlWhU4WbAwowyxIr6i6hV5Z5.jpg",
+      name: "Boat name",
     },
 
     boatOwnerDetails: {},
@@ -101,6 +103,12 @@ const details = [
 
     booking_info: {
       preferredDate: "2022-10-10",
+      departureTime: "10:00",
+      additionalInfo: "I want to go fishing",
+      returnDateTime: {
+        seconds: 1665360000,
+        nanoseconds: 123456789,
+      },
       duration: {
         hours: 2,
         minutes: 30,

@@ -6,12 +6,13 @@ import RequestsTable from "../../components/documents/RequestsTable";
 
 const Documents = () => {
   return (
-    <div className="p-4 md:p-8 lg:max-w-[1000px] mx-auto">
+    <div className="p-4 md:p-8 lg:max-w-[1000px] mx-auto px-4 md:px-[40px]">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
         Documents Management
       </h1>
       <p className="text-sm md:text-base text-gray-600 mb-8">
-        Explore and check Users Documents for Submissions with detailed insights into each request.
+        Explore and check Users Documents for Submissions with detailed insights
+        into each request.
       </p>
       <RequestsTable rows={requests} />
     </div>
