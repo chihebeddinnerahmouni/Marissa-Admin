@@ -23,6 +23,7 @@ import Login from "./components/auth/Login.tsx";
 import Signup from "./components/auth/Signup.tsx";
 import ForgetPassword from "./components/auth/ForgetPassword.tsx";
 import CheckListing from "./pages/make listing/CheckListing.tsx";
+import Bookings from "./pages/Bookings.tsx";
 
 
 
@@ -47,6 +48,8 @@ const router = createBrowserRouter([
       },
       { path: "/listings", element: <MakeListings /> },
       { path: "listings/check-details/:listingId", element: <CheckListing /> },
+      { path: "bookings", element: <Bookings /> },
+      { path: "bookings/:bookingId", element: <Bookings /> },
     ],
   },
   {

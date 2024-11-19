@@ -8,7 +8,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import PublishIcon from "@mui/icons-material/Publish";
 import DirectionsBoatFilledIcon from "@mui/icons-material/DirectionsBoatFilled";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
 
 const classes = [
   {
@@ -62,7 +62,7 @@ const classes = [
   {
     id: 8,
     title: "documents",
-    icon: PublishIcon,
+    icon: FolderCopyIcon,
     url: "documents",
   },
   {
