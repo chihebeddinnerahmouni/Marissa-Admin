@@ -134,6 +134,10 @@
 
 
 // export default AddCategoryModal;
+
+
+
+
 import ReactModal from "react-modal";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
@@ -215,8 +219,8 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({ setClose }) => {
     <ReactModal
       isOpen={true}
       onRequestClose={() => setClose(false)}
-      className="flex flex-col items-center justify-center w-full bg-white p-3 rounded-10 shadow-hardShadow md:w-[500px] max-h-full overflow-y-auto"
-      overlayClassName="fixed inset-0 py-20 backdrop-blur-[7px] bg-opacity-20 bg-black z-20 flex items-center justify-center px-4 overflow-y-auto"
+      className="flex flex-col items-center justify-center w-full bg-white p-3 rounded-10 shadow-hardShadow mx-auto overflow-auto md:w-[500px]"
+      overlayClassName="fixed inset-0 py-20 backdrop-blur-[7px] bg-opacity-20 bg-black z-20 flex items-center justify-center px-4 mt-[60px] lg:mt-[80px]"
     >
       <p className="mb-5 text-[25px] font-bold">{t("add_category")}</p>
 

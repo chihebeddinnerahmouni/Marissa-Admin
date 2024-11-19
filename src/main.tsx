@@ -18,7 +18,10 @@ import Submissions from "./pages/Submissions.tsx";
 import Documents from "./pages/documents/Documents.tsx";
 import CheckDocuments from "./pages/documents/CheckDocuments.tsx";
 import MakeListings from "./pages/make listing/MakeListings.tsx";
-
+import AuthLayout from "./layout/authLayout.tsx";
+import Login from "./components/auth/Login.tsx";
+import Signup from "./components/auth/Signup.tsx";
+import ForgetPassword from "./components/auth/ForgetPassword.tsx";
 
 
 
@@ -37,10 +40,20 @@ const router = createBrowserRouter([
       { path: "/help", element: <Help /> },
       { path: "/submissions", element: <Submissions /> },
       { path: "/documents", element: <Documents /> },
-      { path: "/documents/check-document/:documentsId", element: <CheckDocuments /> },
+      {
+        path: "/documents/check-document/:documentsId",
+        element: <CheckDocuments />,
+      },
       { path: "/listings", element: <MakeListings /> },
-      
-    ],  
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Signup /> },
+      { path: "/forgot-password", element: <ForgetPassword /> },
+    ],
   },
 ]);
 

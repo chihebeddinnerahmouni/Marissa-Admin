@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import {
-  TextField,
-} from "@mui/material";
-import {
   IoAddCircleOutline,
 } from "react-icons/io5";
 import CategoriesTable from "../components/categories/CategoriesTable";
@@ -15,6 +12,54 @@ interface Category {
   enName: string;
   arName: string;
 }
+
+
+const Categories: React.FC = () => {
+  // const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const categories = initialCategories
+  const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
+  // const mainColor = "#FF385C";
+
+
+
+
+  
+
+
+  return (
+     <div className={`p-4 md:p-8 lg:max-w-[700px] mx-auto `}>
+      <div className="">
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
+          Categories Management
+        </h1>
+        <p className="text-sm md:text-base text-gray-600 mb-8">
+          Explore and manage boat categories with detailed insights into each
+          type of boat available for rental.
+        </p>
+
+
+        {/* Add Category Section */}
+        <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
+          {isAddCategoryModalOpen && <AddCategoryModal setClose={setIsAddCategoryModalOpen} />}
+          
+          <button
+            onClick={()=>setIsAddCategoryModalOpen(true)}
+            className="flex items-center justify-center bg-main text-white text-[20px] rounded-lg min-w-[50px] h-full"
+          >
+          <IoAddCircleOutline />
+          </button>
+        </div>
+        
+        {/* Categories Table */}
+        <CategoriesTable
+          categories={categories}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Categories;
 
 const initialCategories: Category[] = [
   { id: 1, enName: "engine", arName: "محرك" },
@@ -39,79 +84,4 @@ const initialCategories: Category[] = [
   { id: 20, enName: "sailing boat", arName: "قارب شراعي" },
   { id: 21, enName: "fishing boat", arName: "قارب صيد" },
   { id: 22, enName: "cruise ship", arName: "سفينة سياحية" },
-
 ];
-
-const Categories: React.FC = () => {
-  // const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const categories = initialCategories
-  const [newCategory, setNewCategory] = useState<string>("");
-  const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
-  const mainColor = "#FF385C";
-
-
-
-
-  
-
-
-  return (
-    <div className="p-4 md:p-8 lg:max-w-[700px] mx-auto">
-      <div className="">
-        <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text">
-          Categories Management
-        </h1>
-        <p className="text-sm md:text-base text-gray-600 mb-8">
-          Explore and manage boat categories with detailed insights into each
-          type of boat available for rental.
-        </p>
-
-
-        {/* Add Category Section */}
-        <div className="flex h-[50px] justify-end mb-6 gap-3 items-center">
-          {isAddCategoryModalOpen && <AddCategoryModal setClose={setIsAddCategoryModalOpen} />}
-          <TextField
-            label="Category Name"
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-                      variant="outlined"
-                      fullWidth
-            required
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "grey",
-                },
-                "&:hover fieldset": {
-                  borderColor: "grey",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: mainColor,
-                },
-              },
-              "& .MuiInputLabel-root": {
-                color: "gray",
-              },
-              "& .MuiInputLabel-root.Mui-focused": {
-                color: mainColor,
-              },
-            }}
-          />
-          <button
-            onClick={()=>setIsAddCategoryModalOpen(true)}
-            className="flex items-center justify-center bg-main text-white text-[20px] rounded-lg min-w-[50px] h-full"
-          >
-            <IoAddCircleOutline />
-          </button>
-        </div>
-        
-        {/* Categories Table */}
-        <CategoriesTable
-          categories={categories}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default Categories;
