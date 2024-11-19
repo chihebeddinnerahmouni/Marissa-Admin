@@ -1,15 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { MdOutlineTipsAndUpdates } from "react-icons/md";import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { useState } from "react";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { format } from "date-fns";
 import { ar, enUS } from "date-fns/locale";
-import UpdateSpeceficDays from "./UpdateSpeceficDays";
 
 const SpeceficDates = ({ prices }: any) => {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
   const locale = i18n.language === "ar" ? ar : enUS;
-  const [isOpen, setIsOpen] = useState(false);
 
   // console.log(prices);
 
@@ -76,17 +72,6 @@ const SpeceficDates = ({ prices }: any) => {
           )}
         </div>
       </div>
-
-      {/* update button */}
-      <button
-        className={`absolute top-1 ${isArabic ? "left-2" : "right-2"}`}
-        onClick={() => setIsOpen(true)}
-      >
-        <HiOutlineDotsHorizontal className="text-writingGrey text-[30px]" />
-      </button>
-
-      {/* update modal */}
-      {isOpen && <UpdateSpeceficDays setIsOpen={setIsOpen} prices={prices} />}
     </div>
   );
 };

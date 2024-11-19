@@ -7,6 +7,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import HelpIcon from "@mui/icons-material/Help";
 import PublishIcon from "@mui/icons-material/Publish";
 import DirectionsBoatFilledIcon from "@mui/icons-material/DirectionsBoatFilled";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
 
 const classes = [
@@ -69,6 +70,12 @@ const classes = [
     title: "listings",
     icon: ListIcon,
     url: "listings",
+  },
+  {
+    id: 10,
+    title: "bookings",
+    icon: LocalLibraryIcon,
+    url: "bookings",
   },
 ];
 

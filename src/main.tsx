@@ -22,6 +22,7 @@ import AuthLayout from "./layout/authLayout.tsx";
 import Login from "./components/auth/Login.tsx";
 import Signup from "./components/auth/Signup.tsx";
 import ForgetPassword from "./components/auth/ForgetPassword.tsx";
+import CheckListing from "./pages/make listing/CheckListing.tsx";
 
 
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
         element: <CheckDocuments />,
       },
       { path: "/listings", element: <MakeListings /> },
+      { path: "listings/check-details/:listingId", element: <CheckListing /> },
     ],
   },
   {

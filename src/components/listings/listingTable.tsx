@@ -336,7 +336,7 @@ export default function EnhancedTable({ rows }: any) {
                           onClick={(event) => {
                             event.stopPropagation();
                             window.open(
-                              `documents/check-document/${user.id}`,
+                              `listings/check-details/${user.id}`,
                               "_blank"
                             );
                           }}
