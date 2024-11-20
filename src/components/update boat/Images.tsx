@@ -12,7 +12,7 @@ const Images = ({ images }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
    const [photoIndex, setPhotoIndex] = useState(-1);
-   const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  //  const url = import.meta.env.VITE_SERVER_URL_LISTING;
 // console.log(images);
 
 

@@ -105,7 +105,8 @@ const one = {
   id: 65,
   title: "Beautiful Beachgfhgfh g",
   description:
-    "Enjoy a serene boat trip with scenic beach views. Enjoy a serene boat trip with scenic beach views. Enjoy a serene boat trip with scenic beach views.    Enjoy a serene boat trip with scenic beach views",
+    "Enjoy a serene boat trip with scenic beach views. Enjoy a serene boat trip with scenic beach views. Enjoy a serene boat trip with scenic beach views.    Enjoy a serene boat trip with scenic beach views  Enjoy a serene boat trip with scenic beach views. Enjoy a serene boat trip with scenic beach views.  Enjoy a serene boat trip with scenic beach views",
+    // "Enjoy a serene boat trip with scenic beach views.",
   rating: 0,
   latitude: 36.1907,
   longitude: 5.4419,
