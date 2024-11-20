@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 // import Swal from "sweetalert2";
 // import { useNavigate } from "react-router-dom";
 import Images from "../../components/update boat/Images";
+import Reviews from "../../components/update boat/Reviews";
 
 
 
@@ -92,6 +93,7 @@ const UpdateBoat = () => {
         <Availability
           availabilities={details.Availabilities}
         />
+        <Reviews reviews={details.reviews} />
       </div>
     </>
   );
@@ -151,7 +153,6 @@ const one = {
       url: "https://getmyboat-user-images1.imgix.net/images/541b31cb-082a-4327-8ecd-eafa185e2c7c/-processed.jpg?ixlib=js-3.8.0&q=50&fit=crop&auto=format%2Ccompress&w=426&h=276&dpr=1",
     },
   ],
-  Benefits: [],
   Availabilities: [
     {
       id: 95,
@@ -171,43 +172,28 @@ const one = {
       createdAt: "2024-11-05T11:53:36.000Z",
       updatedAt: "2024-11-05T11:53:36.000Z",
     },
+  ],
+
+  reviews: [
     {
-      id: 95,
-      listing_id: 65,
-      start_date: "2024-12-01",
-      end_date: "2024-12-15",
-      reserved: true,
-      createdAt: "2024-11-05T11:53:36.000Z",
-      updatedAt: "2024-11-05T11:53:36.000Z",
+      user: {
+        image: "uploads\\avatars\\1730826334068.jpg",
+        name: "chiheb Rahmouni",
+        createdAt: "2024 Nov 10",
+      },
+      review_content: "This is a test review",
     },
     {
-      id: 96,
-      listing_id: 65,
-      start_date: "2024-12-15",
-      end_date: "2024-12-16",
-      reserved: true,
-      createdAt: "2024-11-05T11:53:36.000Z",
-      updatedAt: "2024-11-05T11:53:36.000Z",
-    },
-    {
-      id: 96,
-      listing_id: 65,
-      start_date: "2024-12-15",
-      end_date: "2024-12-16",
-      reserved: true,
-      createdAt: "2024-11-05T11:53:36.000Z",
-      updatedAt: "2024-11-05T11:53:36.000Z",
-    },
-    {
-      id: 96,
-      listing_id: 65,
-      start_date: "2024-12-15",
-      end_date: "2024-12-16",
-      reserved: true,
-      createdAt: "2024-11-05T11:53:36.000Z",
-      updatedAt: "2024-11-05T11:53:36.000Z",
+      user: {
+        image: "uploads\\avatars\\1730826334068.jpg",
+        name: "chiheb Rahmouni",
+        createdAt: "2024 Nov 10",
+      },
+      review_content:
+        "This is a test review, This is a test review,iyg iygiyigilg igy iutpit egfie ffefe esdfzrh iziuzgbozfpiu o*zînizyu ihnqfepuypçzuiuzg pi This is a test review, This is a test review,iyg iygiyigilg igy iutpit egfie ffefe esdfzrh iziuzgbozfpiu o*zînizyu ihnqfepuypçzuiuzg pi ",
     },
   ],
+
   Region: {
     id: 1,
     name: "Al Riadh",
