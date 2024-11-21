@@ -27,7 +27,6 @@ const Help = () => {
   useEffect(() => { 
     axios.get(url + '/categories')
       .then((res) => {
-        // console.log(res.data);
         setHelpCat(res.data);
         setSelectedCat(res.data[0].id);
         setLoading(false);
@@ -75,19 +74,16 @@ const TableOfQuestions = ({ categoryId }: { categoryId: number }) => {
         const [selectedQuestionId, setSelectedQuestionId] = useState<
           number | null
     >(null);
-  const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<any[]>([]);
   const [isAddQstOpen, setIsAddQstOpen] = useState(false);
   const url = import.meta.env.VITE_SERVER_URL_HELP;
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get(url + `/categories/${categoryId}/questions`)
       .then((res) => {
         // console.log(res.data);
         setQuestions(res.data);
-        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -120,15 +116,6 @@ const TableOfQuestions = ({ categoryId }: { categoryId: number }) => {
         });
     };
 
-  
-  
-    // if (loading) {
-    //   return (
-    //     <div className="w-full h-screen">
-    //       <LoadingLine />
-    //     </div>
-    //   );
-    // }
   
     return (
       <div className="overflow-x-auto">

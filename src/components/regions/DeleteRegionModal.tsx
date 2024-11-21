@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { Button, Box, Typography } from "@mui/material";
+import LoadingButton from "../ui/LoadingButton";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface DeleteModalProps {
     setClose: (isOpen: boolean) => void;
     region: {
         id: number;
         name: string;
+        arabic_name: string;
     };
 }
 
@@ -16,9 +20,28 @@ const DeleteRegionModal: React.FC<DeleteModalProps> = ({
     setClose,
     region,
 }) => {
+
+
+    // console.log(region);
+    const [loading, setLoading] = useState(false);
+    const url = import.meta.env.VITE_SERVER_URL_LISTING;
+    const {i18n} = useTranslation();
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setClose(false);
+        setLoading(true);   
+        axios.delete(`${url}/api/region/regions/${region.id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            }
+        })
+        .then(() => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+            setLoading(false);
+        });
     };
 
     return (
@@ -34,7 +57,7 @@ const DeleteRegionModal: React.FC<DeleteModalProps> = ({
                 Delete Region
             </Typography>
             <Typography variant="body1" gutterBottom>
-                Are you sure you want to delete the region <strong>{region.name}</strong>?
+                Are you sure you want to delete the region <strong>{i18n.language === "ar" ? region.arabic_name : region.name}</strong>?
             </Typography>
             <form onSubmit={handleSubmit}>
                 <Box display="flex" justifyContent="flex-end" gap={2} mt={4}>
@@ -51,8 +74,10 @@ const DeleteRegionModal: React.FC<DeleteModalProps> = ({
                     </Button>
                     <Button
                         variant="contained"
+                        disabled={loading}
                         sx={{
                             color: "white",
+                            width: "90px",
                             backgroundColor: "#FF385C",
                             '&:hover': {
                                 backgroundColor: "#FF1E3C",
@@ -60,7 +85,7 @@ const DeleteRegionModal: React.FC<DeleteModalProps> = ({
                         }}
                         type="submit"
                     >
-                        Delete
+                        {loading ? <LoadingButton /> : "Delete"}
                     </Button>
                 </Box>
             </form>

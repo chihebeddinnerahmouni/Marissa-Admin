@@ -12,6 +12,8 @@ interface UpdateModalProps {
   };
 }
 
+// not used
+
 ReactModal.setAppElement("#root");
 
 const UpdateRegionModal: React.FC<UpdateModalProps> = ({ setClose, region }) => {

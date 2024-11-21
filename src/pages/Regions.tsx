@@ -2,10 +2,10 @@ import RegionComp from "../components/regions/RegionComp";
 import AddRegionModal from "../components/regions/AddRegionModal";
 import {
   useState,
-  // useEffect
+  useEffect
 } from "react";
-// import axios from "axios";
-// import LoadingLine from "../components/ui/LoadingLine";
+import axios from "axios";
+import LoadingLine from "../components/ui/LoadingLine";
 
 
 
@@ -16,29 +16,29 @@ import {
 const Regions = () => {
 
   const [isAddRegionOpen, setIsAddRegionOpen] = useState(false);
-  // const [regionsArray, setRegionsArray] = useState(regions_array);
-  // const [loading, setLoading] = useState(true);
-  //   const url = import.meta.env.VITE_SERVER_URL_LISTING;
+  const [regionsArray, setRegionsArray] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_SERVER_URL_LISTING;
 
-  // useEffect(() => {
-  //    axios
-  //      .get(`${url}/api/region/regions`)
-  //      .then((response) => {
-  //        setRegionsArray(response.data);
-  //        setLoading(false);
-  //      })
-  //      .catch((error) => {
-  //        console.log(error);
-  //      });
-  // }, []);
+  useEffect(() => {
+     axios
+       .get(`${url}/api/region/regions`)
+       .then((response) => {
+         setRegionsArray(response.data);
+         setLoading(false);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+  }, []);
 
-  // if (loading) {
-  //   return (
-  //     <div className="w-full h-screen">
-  //       <LoadingLine />
-  //     </div>
-  //   )
-  // }
+  if (loading) {
+    return (
+      <div className="w-full h-screen">
+        <LoadingLine />
+      </div>
+    )
+  }
 
 
 
@@ -65,7 +65,7 @@ const Regions = () => {
       {isAddRegionOpen && <AddRegionModal setClose={setIsAddRegionOpen} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {regions_array.map((region: any, index: number) => (
+        {regionsArray.map((region: any, index: number) => (
           <div key={index} className="flex flex-col items-center">
             <RegionComp region={region} />
           </div>
@@ -76,29 +76,29 @@ const Regions = () => {
 };
 
 export default Regions;
-const regions_array = [
-  {
-    id: 1,
-    name: "Riyadh",
-    photo:
-      "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
-  },
-  {
-    id: 2,
-    name: "Jeddah",
-    photo:
-      "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
-  },
-  {
-    id: 3,
-    name: "Dammam",
-    photo:
-      "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
-  },
-  {
-    id: 4,
-    name: "Makkah",
-    photo:
-      "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
-  },
-];
+// const regions_array = [
+//   {
+//     id: 1,
+//     name: "Riyadh",
+//     photo:
+//       "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
+//   },
+//   {
+//     id: 2,
+//     name: "Jeddah",
+//     photo:
+//       "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
+//   },
+//   {
+//     id: 3,
+//     name: "Dammam",
+//     photo:
+//       "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
+//   },
+//   {
+//     id: 4,
+//     name: "Makkah",
+//     photo:
+//       "https://i0.wp.com/www.touristsaudiarabia.com/wp-content/uploads/2023/05/shutterstock_1224851173.jpg?resize=800%2C534&ssl=1",
+//   },
+// ];

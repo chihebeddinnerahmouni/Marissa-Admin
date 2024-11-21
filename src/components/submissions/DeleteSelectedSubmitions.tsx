@@ -8,6 +8,8 @@ interface DeleteModalProps {
 }
 ReactModal.setAppElement("#root");
 
+// not used
+
 const DeleteSelectedSubmitions: React.FC<DeleteModalProps> = ({
   setClose,
   selected,

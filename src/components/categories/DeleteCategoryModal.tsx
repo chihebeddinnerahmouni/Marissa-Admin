@@ -24,7 +24,7 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
   const { i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const url = import.meta.env.VITE_SERVER_URL_CATEGORY;
-
+  const a = 1;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
