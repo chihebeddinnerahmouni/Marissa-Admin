@@ -40,9 +40,10 @@ const Login = () => {
         {}
       )
       .then((res) => {
+        // console.log(res);
         localStorage.setItem("jwt", res.data.token);
         setLoading(false);
-        navigate("/?page=1");
+        navigate("/");
       })
       .catch((err: any) => {
         // console.log(err);

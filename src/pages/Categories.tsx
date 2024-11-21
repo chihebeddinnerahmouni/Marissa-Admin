@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import CategoriesTable from "../components/categories/CategoriesTable";
+import LoadingLine from "../components/ui/LoadingLine";
+import axios from "axios";
 
 
 
@@ -12,13 +14,36 @@ interface Category {
 
 
 const Categories: React.FC = () => {
-  const categories = initialCategories
+
+
+  // const categories = initialCategories
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_SERVER_URL_CATEGORY;
+
+  useEffect(() => {
+    axios.get(url + "/categories")
+      .then((res) => {
+        // console.log(res.data);
+        setCategories(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
 
 
 
 
-
-  
+  if (loading) {
+    return (
+      <div className="w-full h-screen">
+        <LoadingLine />
+      </div>
+    )
+  }
 
 
   return (
@@ -41,9 +66,9 @@ const Categories: React.FC = () => {
 
 export default Categories;
 
-const initialCategories: Category[] = [
-  { id: 1, enName: "engine", arName: "محرك", image: "hirbae.jpg" },
-  { id: 2, enName: "sail", arName: "شراع", image: "hirbae.jpg" },
-  { id: 3, enName: "motor", arName: "موتور", image: "hirbae.jpg" },
-  { id: 4, enName: "yacht", arName: "يخت", image: "hirbae.jpg" },
-];
+// const initialCategories: Category[] = [
+//   { id: 1, enName: "engine", arName: "محرك", image: "hirbae.jpg" },
+//   { id: 2, enName: "sail", arName: "شراع", image: "hirbae.jpg" },
+//   { id: 3, enName: "motor", arName: "موتور", image: "hirbae.jpg" },
+//   { id: 4, enName: "yacht", arName: "يخت", image: "hirbae.jpg" },
+// ];

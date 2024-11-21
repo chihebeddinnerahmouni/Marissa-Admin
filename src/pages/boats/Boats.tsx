@@ -1,19 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CategoriesCont from "../../containers/boats/CategoriesCont";
 import BoatsCont from "../../containers/boats/BoatsCont";
+import axios from "axios";
+import LoadingLine from "../../components/ui/LoadingLine";
 
-const categories = [
-  { id: 1, name: "test", image: "anonyme.jpg" },
-  { id: 2, name: "test2", image: "anonyme.jpg" },
-  { id: 3, name: "tst3", image: "anonyme.jpg" },
-  { id: 4, name: "test4", image: "anonyme.jpg" },
-];
 
 const Boats = () => {
 
-  // const [ctegoriesArray, setCategoriesArray] = useState(categories);
-  const ctegoriesArray = categories;
-      const [selectedType, setSelectedType] = useState(categories[0].id);
+  const [ctegoriesArray, setCategoriesArray] = useState([]);
+  // const ctegoriesArray = categories;
+  const [selectedType, setSelectedType] = useState();
+  const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_SERVER_URL_CATEGORY;
+
+
+  useEffect(() => {
+    axios
+      .get(url + "/categories")
+      .then((response) => {
+        setCategoriesArray(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, []);
+
+
+
+
+
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingLine />
+      </div>
+    )
+  }
 
 
   return (
@@ -36,3 +61,11 @@ const Boats = () => {
 }
 
 export default Boats
+
+
+// const categories = [
+//   { id: 1, name: "test", image: "anonyme.jpg" },
+//   { id: 2, name: "test2", image: "anonyme.jpg" },
+//   { id: 3, name: "tst3", image: "anonyme.jpg" },
+//   { id: 4, name: "test4", image: "anonyme.jpg" },
+// ];

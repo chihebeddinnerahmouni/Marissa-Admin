@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState} from "react";
 import ReactModal from "react-modal";
 import { Button, Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import LoadingButton from "../ui/LoadingButton";
+import axios from "axios";
 
 interface DeleteModalProps {
   setClose: (isOpen: boolean) => void;
@@ -20,13 +22,27 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
 }) => {
 
   const { i18n } = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const url = import.meta.env.VITE_SERVER_URL_CATEGORY;
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+      axios
+        .delete(url + "/admin/categories/" + category.id, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
   };
-
-
-  // console.log(category);
 
   return (
     <ReactModal
@@ -61,9 +77,12 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
             Cancel
           </Button>
           <Button
+            disabled={loading}
             variant="contained"
             sx={{
               color: "white",
+              width: "90px",
+              height: "40px",
               backgroundColor: "#FF385C",
               "&:hover": {
                 backgroundColor: "#FF1E3C",
@@ -71,7 +90,8 @@ const DeleteCategoryModal: React.FC<DeleteModalProps> = ({
             }}
             type="submit"
           >
-            Delete
+            {/* Delete */}
+            {loading ? <LoadingButton /> : "Delete"}
           </Button>
         </Box>
       </form>

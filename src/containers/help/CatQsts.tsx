@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import AddQst from '../../components/help/AddQst';
+import AddQuestionCat from '../../components/help/AddQuestionCat';
 import { useState } from 'react';
 
 
@@ -29,11 +29,11 @@ const CatQsts = ({ helpCat, selectedCat, handleCategoryClick }: any) => {
       </div>
       <button
         className="bg-main text-white px-4 py-2 rounded"
-        onClick={() => setIsAddQstOpen(true) }
+        onClick={() => setIsAddQstOpen(true)}
       >
-        {isMobile ? "+" : "Add Question"}
-          </button>
-        {isAddQstOpen && <AddQst setClose={setIsAddQstOpen} />}
+        {isMobile ? "+" : "Add Category"}
+      </button>
+      {isAddQstOpen && <AddQuestionCat setClose={setIsAddQstOpen}/>}
     </div>
   );
 };

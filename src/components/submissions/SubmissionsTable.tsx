@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IoSearchSharp } from "react-icons/io5";
 import CheckIcon from "@mui/icons-material/Check";
 import {
   TablePagination,
@@ -18,7 +17,7 @@ import {
   Table,
   TableBody,
 } from "@mui/material";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import AcceptOneSubmission from "./AcceptOneSubmission";
 import DeleteOneSubmittion from "./DeleteOneSubmittion";
 import AcceptSelected from "./AcceptSelected";
@@ -33,6 +32,7 @@ interface Data {
   name: string;
   phone: string;
   email: string;
+  boatType: string;
 }
 
 type Order = "asc" | "desc";
@@ -45,23 +45,24 @@ interface HeadCell {
 }
 
 const headCells: readonly HeadCell[] = [
-  {
-    id: "profilePic",
-    numeric: false,
-    disablePadding: true,
-    label: "Profile Picture",
-  },
-  { id: "name", numeric: false, disablePadding: false, label: "Name" },
+  // {
+  //   id: "profilePic",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Profile Picture",
+  // },
+  // { id: "name", numeric: false, disablePadding: false, label: "Name" },
   {
     id: "buis_type",
     numeric: false,
     disablePadding: false,
     label: "buis_type",
   },
-  { id: "category", numeric: false, disablePadding: false, label: "category" },
+  // { id: "category", numeric: false, disablePadding: false, label: "category" },
+  { id: "boatType", numeric: false, disablePadding: false, label: "Boat type" },
   { id: "city", numeric: false, disablePadding: false, label: "city" },
-  { id: "phone", numeric: false, disablePadding: false, label: "Phone" },
-  { id: "email", numeric: false, disablePadding: false, label: "Email" },
+  // { id: "phone", numeric: false, disablePadding: false, label: "Phone" },
+  // { id: "email", numeric: false, disablePadding: false, label: "Email" },
 ];
 
 
@@ -106,7 +107,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align="center"
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
             sx={{ fontWeight: "bold" }}
@@ -122,17 +123,15 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   selected: readonly number[];
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected, searchQuery, setSearchQuery, selected } = props;
+  const { numSelected, selected } = props;
 
   const [deleteAllModal, setDeleteAllModal] = React.useState(false);
   const [acceptAllModal, setAcceptAllModal] = React.useState(false);
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
   
 
 
@@ -168,22 +167,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Submitions
         </Typography>
       )}
-      <div className="search relative">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search users by name"
-          className={`p-2 w-[130px] border rounded-40 outline-main font-semibold bg-emptyInput md:w-[200px] ${
-            i18n.language === "ar" ? "pr-7" : "pl-7"
-          }`}
-        />
-        <IoSearchSharp
-          className={`absolute top-1/2 transform -translate-y-1/2 text-gray-400 text-[18px] ${
-            i18n.language === "ar" ? "right-2" : "left-2"
-          }`}
-        />
-      </div>
 
       {numSelected > 0 ? (
         <>
@@ -222,7 +205,6 @@ export default function EnhancedTable({rows}: any) {
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [searchQuery, setSearchQuery] = React.useState("");
   const [deleteModalUserId, setDeleteModalUserId] = React.useState<
     number | null
         >(0);
@@ -279,8 +261,6 @@ export default function EnhancedTable({rows}: any) {
       <Paper sx={{ width: "100%", mb: 2 }}>
         <EnhancedTableToolbar
           numSelected={selected.length}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
           selected={selected}
         />
         <TableContainer>
@@ -332,7 +312,7 @@ export default function EnhancedTable({rows}: any) {
                         }}
                       />
                     </TableCell>
-                    <TableCell
+                    {/* <TableCell
                       component="th"
                       id={labelId}
                       scope="row"
@@ -343,23 +323,28 @@ export default function EnhancedTable({rows}: any) {
                         alt={`${user.name}'s profile`}
                         className="w-[40px] h-[40px] rounded-full"
                       />
-                    </TableCell>
-                    <TableCell className="text-nowrap">
+                    </TableCell> */}
+                    {/* <TableCell className="text-nowrap">
                       {user.user.name}
-                    </TableCell>
-                    <TableCell className="text-nowrap">
+                    </TableCell> */}
+                    <TableCell className="text-nowrap" align="center">
                       {user.business_type}
                     </TableCell>
-                    <TableCell className="text-nowrap">
+                    <TableCell align="center" className="text-nowrap">
+                      {user.boat_type}
+                    </TableCell>
+                    {/* <TableCell className="text-nowrap">
                       {user.category}
+                    </TableCell> */}
+                    <TableCell className="text-nowrap" align="center">
+                      {user.city}
                     </TableCell>
-                    <TableCell className="text-nowrap">{user.city}</TableCell>
-                    <TableCell className="text-nowrap">
+                    {/* <TableCell className="text-nowrap">
                       {user.user.phone}
-                    </TableCell>
-                    <TableCell className="text-nowrap">
+                    </TableCell> */}
+                    {/* <TableCell className="text-nowrap">
                       {user.user.email}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell align="right">
                       <Box
                         sx={{
@@ -371,7 +356,7 @@ export default function EnhancedTable({rows}: any) {
                         <IconButton
                           onClick={(event) => {
                             event.stopPropagation();
-                            setAcceptModalUserId(user.id); 
+                            setAcceptModalUserId(user.id);
                           }}
                         >
                           <CheckIcon className="text-green-500 hover:text-green-700" />

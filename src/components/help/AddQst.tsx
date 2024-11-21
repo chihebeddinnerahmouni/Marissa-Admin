@@ -2,29 +2,50 @@ import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { TextField, Button, Box, Typography, Select, MenuItem } from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
+import axios from "axios";
 
 
 interface AddQstProps {
   setClose: (isOpen: boolean) => void;
+  categoriesArray: any;
 }
 
 ReactModal.setAppElement("#root");
 
-const categoriesArray = ["All", "About", "Features", "Listings", "Regions", "Users"];
+// const categoriesArray = ["All", "About", "Features", "Listings", "Regions", "Users"];
 
-const AddQst: React.FC<AddQstProps> = ({ setClose }) => {
+const AddQst: React.FC<AddQstProps> = ({ setClose, categoriesArray }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState("");
   const mainColor = "#FF385C";
   // const [categoriesArray, setCategoriesArray] = useState<string[]>([]);
-  console.log(answer);
+  // console.log(answer);
+  const url = import.meta.env.VITE_SERVER_URL_HELP;
+
+  // console.log(question);
+  // console.log(answer);
+  console.log(categoriesArray);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the form submission logic here
-    console.log("Question:", question);
-    console.log("Answer:", answer);
+
+    axios
+      .post(
+        `${url}/categories/1/questions`,
+        // "/categories/1/questions",
+        {
+          question,
+          answer,
+        }
+      )
+      .then(() => {
+        // console.log(response);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     setClose(false);
   };
 
@@ -92,7 +113,7 @@ const AddQst: React.FC<AddQstProps> = ({ setClose }) => {
                 color: mainColor,
               },
               "& .MuiSelect-select": {
-                color: "black", 
+                color: "black",
               },
             }}
             variant="outlined"
@@ -103,9 +124,9 @@ const AddQst: React.FC<AddQstProps> = ({ setClose }) => {
             <MenuItem value="" disabled>
               Select Question category
             </MenuItem>
-            {categoriesArray.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
+            {categoriesArray.map((category: any, index: number) => (
+              <MenuItem key={index} value={category}>
+                {category.name}
               </MenuItem>
             ))}
           </Select>

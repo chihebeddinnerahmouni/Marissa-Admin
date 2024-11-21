@@ -19,7 +19,7 @@ interface ItemP {
 
 const Stats: React.FC<ItemP> = ({ Item }) => {
   const IconComponent = Item.icon;
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   return (
     <div className="min-w-[250px] p-4 bg-white shadow-sm border rounded-10 relative transition-transform transform hover:scale-[102%] cursor-default lg:min-w-[300px] ">
@@ -53,7 +53,7 @@ const Stats: React.FC<ItemP> = ({ Item }) => {
         >
           {Item.growth}%
         </p>
-        <p className="text-sm lg:text-lg">From {Item.from}</p>
+        <p className="text-sm lg:text-lg">{t("from")} {Item.from}</p>
       </div>
     </div>
   );

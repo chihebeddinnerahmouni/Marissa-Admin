@@ -15,6 +15,7 @@ export default function BasicTable({ rows }: any) {
   const [selectedRowId, setSelectedRowId] = useState<any>(null);
   const [isDeleteOpen, setIsDeleteopen] = useState<boolean>(false);
   const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
+  const url = import.meta.env.VITE_SERVER_URL_LISTING;
 
   return (
     <>
@@ -24,15 +25,14 @@ export default function BasicTable({ rows }: any) {
           feature={selectedRowId}
         />
       )}
-      {isAddOpen && (
-        <AddFeature
-          setClose={setIsAddOpen}
-        />
-      )}
+      {isAddOpen && <AddFeature setClose={setIsAddOpen} />}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Picture
+              </TableCell>
               <TableCell align="center" sx={{ fontWeight: "bold" }}>
                 English name
               </TableCell>
@@ -43,7 +43,7 @@ export default function BasicTable({ rows }: any) {
                 align="center"
                 size="medium"
                 sx={{ fontWeight: "bold", color: "red", cursor: "pointer" }}
-                onClick={()=>setIsAddOpen(true)}
+                onClick={() => setIsAddOpen(true)}
               >
                 +
               </TableCell>
@@ -52,8 +52,18 @@ export default function BasicTable({ rows }: any) {
           <TableBody>
             {rows.map((row: any) => (
               <TableRow key={row.id}>
-                <TableCell align="center">{row.englishName}</TableCell>
-                <TableCell align="center">{row.arabicName}</TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <img
+                    src={url + "/" + row.image}
+                    alt={`${row.image}'s profile`}
+                    className="w-[40px] h-[40px] rounded-full object-cover object-center"
+                  />
+                </TableCell>
+                <TableCell align="center">{row.name}</TableCell>
+                <TableCell align="center">{row.arabic_name}</TableCell>
                 <TableCell align="center">
                   <IconButton
                     size="small"

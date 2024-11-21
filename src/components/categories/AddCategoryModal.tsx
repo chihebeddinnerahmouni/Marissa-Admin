@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import CloseIcon from "@mui/icons-material/Close";
+import LoadingButton from "../ui/LoadingButton";
 
 
 
@@ -18,6 +19,7 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
   setClose,
 }) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const [engName, setEngName] = useState("");
   const [arName, setArName] = useState("");
   const [image, setImage] = useState<File | null>(null);
@@ -33,20 +35,31 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
   };
 
   const handleContinue = () => {
-    if (!engName || !image) return;
+
+    // console.log(engName, arName, image);
+
+    const check = !engName || !image || !arName
+    if (check) return;
+
+    setLoading(true); 
+
     const formData = new FormData();
     formData.append("name", engName);
-
+    formData.append("arabic_name", arName);
     formData.append("image", image);
-
     axios
-      .put(`${url}/admin/categories/`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
+      .post(
+        `${url}/admin/categories`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      )
+      .then(() => {
+        // console.log(res);
+        setLoading(false);
         Swal.fire({
           title: t("great"),
           text: t("prices_updated_successfully"),
@@ -62,10 +75,11 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        setLoading(false);
         Swal.fire({
           title: t("oops"),
-          text: t("something_went_wrong_try_again"),
+          text: t(err.response.data.error),
           icon: "error",
           timer: 2000,
           timerProgressBar: true,
@@ -108,7 +122,7 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
       </label>
       <div className="inputs flex gap-4 w-full">
         <TextField
-          label={t("category_name_in_arabic")}
+          label={t("category_name_in_english")}
           value={engName}
           onChange={(e) => setEngName(e.target.value)}
           variant="outlined"
@@ -135,7 +149,7 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
           }}
         />
         <TextField
-          label={t("category_name_in_english")}
+          label={t("category_name_in_arabic")}
           value={arName}
           onChange={(e) => setArName(e.target.value)}
           variant="outlined"
@@ -165,9 +179,11 @@ const AddCategoryModal: React.FC<UpdatePricesProps> = ({
 
       <button
         onClick={handleContinue}
-        className="w-full py-2 bg-main text-white rounded-lg shadow-md hover:bg-mainHover transition duration-200 ease-in-out mt-5"
+        disabled={loading}
+        className="w-full h-10 bg-main text-white rounded-lg shadow-md hover:bg-mainHover transition duration-200 ease-in-out mt-5"
       >
-        {t("save")}
+        {/* {t("save")} */}
+        {loading ? <LoadingButton /> : t("save")}
       </button>
     </div>
   );

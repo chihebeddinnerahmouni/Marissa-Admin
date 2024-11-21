@@ -12,7 +12,10 @@ const ShipTypeComp: React.FC<ShipTypeCompProps> = ({
   selected,
   setSelected,
 }) => {
+
   const { t } = useTranslation();
+    const url = import.meta.env.VITE_SERVER_URL_CATEGORY;
+
 
   return (
     <div
@@ -24,8 +27,8 @@ const ShipTypeComp: React.FC<ShipTypeCompProps> = ({
       onClick={() => setSelected(shipType.id)}
     >
       <img
-        // src={`${import.meta.env.VITE_SERVER_URL_CATEGORY}/${shipType.image}`}
-        src={shipType.image}
+        src={`${url}/${shipType.image}`}
+        // src={shipType.image}
         className="w-[20px] h-[20px] object-center object-cover lg:w-[30px] lg:h-[30px]"
         alt="Type"
       />

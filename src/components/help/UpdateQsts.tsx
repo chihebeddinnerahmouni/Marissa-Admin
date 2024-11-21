@@ -11,11 +11,7 @@ ReactModal.setAppElement("#root");
 const UpdateQsts: React.FC<UpdateModalProps> = ({ setClose }) => {
 
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  // };
-
+  
     
     // not used
   return (

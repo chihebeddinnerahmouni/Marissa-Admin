@@ -7,11 +7,13 @@ import {
   BsFillCalendarCheckFill,
 } from "react-icons/bs";
 import { MdDirectionsBoat } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 
 
 const statsCont = () => {
 
-    const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
       let isDown = false;
       let startX: number;
       let scrollLeft: number;
@@ -39,7 +41,7 @@ const statsCont = () => {
           if (!isDown) return;
           e.preventDefault();
           const x = e.pageX - container.offsetLeft;
-          const walk = (x - startX) * 3; // scroll-fast
+          const walk = (x - startX) * 3; 
           container.scrollLeft = scrollLeft - walk;
         };
 
@@ -66,7 +68,7 @@ const statsCont = () => {
       <Stats
         Item={{
           id: 1,
-          title: "Total Users",
+          title: t("total_users"),
           icon: BsPeopleFill,
           number: 1200,
           growth: 15,
@@ -79,7 +81,7 @@ const statsCont = () => {
       <Stats
         Item={{
           id: 2,
-          title: "Total Boats",
+          title: t("total_boats"),
           icon: MdDirectionsBoat,
           number: 300,
           growth: 10,
@@ -92,7 +94,7 @@ const statsCont = () => {
       <Stats
         Item={{
           id: 3,
-          title: "Total Inquiries",
+          title: t("total_inquiries"),
           icon: BsQuestionCircleFill,
           number: 450,
           growth: 20,
@@ -105,7 +107,7 @@ const statsCont = () => {
       <Stats
         Item={{
           id: 4,
-          title: "Total Trips",
+          title: t("total_trips"),
           icon: BsFillCalendarCheckFill,
           number: 150,
           growth: 5,
@@ -115,7 +117,6 @@ const statsCont = () => {
           bgColor: "#BBDEFB",
         }}
       />
-      
     </div>
   );
 }

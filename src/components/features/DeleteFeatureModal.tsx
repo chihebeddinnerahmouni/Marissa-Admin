@@ -1,13 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactModal from "react-modal";
 import { Button, Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import LodaingButton from "../../components/ui/LoadingButton";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 
 interface DeleteModalProps {
   setClose: (isOpen: boolean) => void;
   feature: {
       arabicName: string,
-      englishName: string
+    englishName: string,
+      id: number
   };
 }
 
@@ -18,17 +23,37 @@ const DeleteFeatureModal: React.FC<DeleteModalProps> = ({
   feature,
 }) => {
 
-    const { i18n }=useTranslation()
+  const { i18n } = useTranslation();
+  const [loading, setLoading] = useState<boolean>(false);
+  const url = import.meta.env.VITE_SERVER_URL_LISTING;
+
+  console.log(feature);
 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setClose(false);
+    setLoading(true);
+    axios
+      .delete(`${url}/admin/listing/features/${feature.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+        setLoading(false);
+      });
   };
 
     // console.log(feature);
     
-
   return (
     <ReactModal
       isOpen={true}
@@ -63,7 +88,9 @@ const DeleteFeatureModal: React.FC<DeleteModalProps> = ({
           </Button>
           <Button
             variant="contained"
+            disabled={loading}
             sx={{
+              width: "90px",
               color: "white",
               backgroundColor: "#FF385C",
               "&:hover": {
@@ -72,7 +99,7 @@ const DeleteFeatureModal: React.FC<DeleteModalProps> = ({
             }}
             type="submit"
           >
-            Delete
+            {loading ? <LodaingButton /> : "Delete"}
           </Button>
         </Box>
       </form>
