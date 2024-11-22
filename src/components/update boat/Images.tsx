@@ -12,7 +12,7 @@ const Images = ({ images }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
    const [photoIndex, setPhotoIndex] = useState(-1);
-  //  const url = import.meta.env.VITE_SERVER_URL_LISTING;
+   const url = import.meta.env.VITE_SERVER_URL_LISTING;
 // console.log(images);
 
 
@@ -24,7 +24,8 @@ const Images = ({ images }: any) => {
           <img
             onClick={() => setPhotoIndex(index + 1)}
             key={index}
-            src={image.url}
+            // src={image.url}
+            src={url + '/' + image.url}
             alt={`Boat image ${index + 1}`}
             className="w-full h-[70px] object-cover object-center rounded cursor-pointer md:h-[105px]"
           />
@@ -37,8 +38,8 @@ const Images = ({ images }: any) => {
           index={photoIndex}
           plugins={[Thumbnails, Fullscreen]}
           slides={images.map((pic: any) => ({
-            // src: `${url}/${pic.url}`,
-            src: `${pic.url}`,
+            src: `${url}/${pic.url}`,
+            // src: `${pic.url}`,
           }))}
         />
       )}

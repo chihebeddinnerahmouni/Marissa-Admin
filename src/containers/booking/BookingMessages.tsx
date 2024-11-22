@@ -1,75 +1,52 @@
 import {
-    // useState,
-    // useEffect,
+    useState,
+    useEffect,
     useRef
 } from "react";
-// import { AppContext } from "@/App";
-// import LoadingLine from "@/components/ui/LoadingLine";
-// import { db } from "../../../firebaseConfig";
-// import ButtomMessages from "@/components/inbox/ButtomMessages";
-// import {
-//   orderBy,
-//   collection,
-//   query,
-//   // where,
-//   onSnapshot,
-//   addDoc,
-//   serverTimestamp,
-// } from "firebase/firestore";
+import LoadingLine from "../../components/ui/LoadingLine";
+import { db } from "../../lib/firebaseConfig";
+import {
+  orderBy,
+  collection,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
 
-const BookingMessages = ({ details, ownerPic }: any) => {
-// const BookingMessages = () => {
-//   const [loading, setLoading] = useState(true);
-//   const { profilePic } = useContext(AppContext);
-//   const [messages, setMessages] = useState<any>([]);
-//   const [newMessage, setNewMessage] = useState("");
-//   const userId = Number(localStorage.getItem("userId"));
+const BookingMessages = ({ details }: any) => {
+  const [loading, setLoading] = useState(true);
+  const [messages, setMessages] = useState<any>([]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    console.log(details, ownerPic);
-//   const url = import.meta.env.VITE_SERVER_URL_USERS;
 
-//   useEffect(() => {
-//     setLoading(true);
-//     const q = query(
-//       collection(db, "conversations", details[0].conversationId, "messages"),
-//       orderBy("timestamp", "asc")
-//     );
-//     const unsubscribe = onSnapshot(q, (snapshot) => {
-//       const fetchedMessages = snapshot.docs.map((doc) => doc.data() as any);
-//       setMessages(fetchedMessages);
-//       setLoading(false);
-//     });
+  useEffect(() => {
+    setLoading(true);
+    const q = query(
+      collection(db, "conversations", details[0].conversationId, "messages"),
+      orderBy("timestamp", "asc")
+    );
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const fetchedMessages = snapshot.docs.map((doc) => doc.data() as any);
+      setMessages(fetchedMessages);
+      setLoading(false);
+    });
 
-//     return () => unsubscribe();
-//   }, [details[0]]);
+    return () => unsubscribe();
+  }, [details[0]]);
 
-//   useEffect(() => {
-//     if (messagesEndRef.current) {
-//       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-//     }
-//   }, [messages]);
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
-//   const handleSendMessage = async () => {
-//     if (newMessage.trim() === "" || !details[0]) return;
-//     setNewMessage("");
-//     await addDoc(
-//       collection(db, "conversations", details[0].conversationId, "messages"),
-//       {
-//         senderId: userId,
-//         senderName: localStorage.getItem("userName"),
-//         message: newMessage,
-//         timestamp: serverTimestamp(),
-//       }
-//     );
-//   };
+  if (loading) {
+    return (
+      <div className="w-full h-screen">
+        <LoadingLine />
+      </div>
+    );
+  }
 
-//   if (loading) {
-//     return (
-//       <div className="w-full h-screen">
-//         <LoadingLine />
-//       </div>
-//     );
-//   }
+  // console.log(messages);
 
   return (
     <>
@@ -133,165 +110,165 @@ const BookingMessages = ({ details, ownerPic }: any) => {
 export default BookingMessages;
 
 
-const messages = [
-  {
-    senderId: 1,
-    senderName: "User One",
-    message: "Hello, this is a test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:00:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-  {
-    senderId: 2,
-    senderName: "User Two",
-    message: "Hi, this is another test message.",
-    timestamp: {
-      toDate: () => new Date("2022-10-10T10:05:00Z"),
-    },
-  },
-];
+// const messages = [
+//   {
+//     senderId: 1,
+//     senderName: "User One",
+//     message: "Hello, this is a test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:00:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+//   {
+//     senderId: 2,
+//     senderName: "User Two",
+//     message: "Hi, this is another test message.",
+//     timestamp: {
+//       toDate: () => new Date("2022-10-10T10:05:00Z"),
+//     },
+//   },
+// ];

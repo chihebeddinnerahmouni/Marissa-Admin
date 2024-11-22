@@ -16,6 +16,8 @@ const Top: React.FC<TopProps> = ({ selected, setSelected, details }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
+
+
   return (
     <div className="p-4 w-full flex justify-between items-center fixed top-[] bg-creme lg:w-[550px] xl:w-[650px] md:px-20 lg:p-4 z-10">
       <div className="right flex items-center gap-4">
@@ -34,40 +36,37 @@ const Top: React.FC<TopProps> = ({ selected, setSelected, details }) => {
           )}
         </button>
 
-        {details.status === "pending" && (
-          <p
-            className={`text-[18px] lg:text-[20px] font-medium text-orange-400`}
-          >
-            {t("pending")}
-          </p>
-        )}
-        {details.status === "expired" && (
-          <p className={`text-[18px] lg:text-[20px] font-medium text-red-400`}>
-            {t("offer_expired")}
-          </p>
-        )}
-        {details.status === "confirmed" && (
-          <p
-            className={`text-[18px] lg:text-[20px] font-medium text-green-400`}
-          >
-            {t("offer_confirmed")}
-          </p>
-        )}
-        {details.status === "ongoing" && (
-          <p className={`text-[18px] lg:text-[20px] font-medium text-blue-400`}>
-            {t("offer_ongoing")}
-          </p>
-        )}
-        {details.status === "cancelled" && (
-          <p className={`text-[18px] lg:text-[20px] font-medium text-red-400`}>
-            {t("offer_cancelled")}
-          </p>
-        )}
-        {details.status === "finished" && (
-          <p className={`text-[18px] lg:text-[20px] font-medium text-gray-400`}>
-            {t("offer_finished")}
-          </p>
-        )}
+
+            {details.status === "pending" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-orange-400">
+                {t("pending")}
+              </p>
+            )}
+            {details.status === "expired" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-red-400">
+                {t("offer_expired")}
+              </p>
+            )}
+            {details.status === "confirmed" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-green-400">
+                {t("offer_confirmed")}
+              </p>
+            )}
+            {details.status === "ongoing" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-blue-400">
+                {t("offer_ongoing")}
+              </p>
+            )}
+            {details.status === "cancelled" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-red-400">
+                {t("offer_cancelled")}
+              </p>
+            )}
+            {details.status === "finished" && (
+              <p className="text-[18px] lg:text-[20px] font-medium text-gray-400">
+                {t("offer_finished")}
+              </p>
+            )}
       </div>
 
       <div className="buttons flex items-center gap-5">

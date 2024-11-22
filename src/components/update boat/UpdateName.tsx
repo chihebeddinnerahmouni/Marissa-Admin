@@ -51,7 +51,8 @@ const UpdateName: React.FC<UpdatePricesProps> = ({
         setIsOpen(false);
         window.location.reload();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         Swal.fire({
           title: t("oops"),
           text: t("something_went_wrong_try_again"),

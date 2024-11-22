@@ -13,7 +13,7 @@ const Guests = ({ features }: any) => {
           <div className="flex gap-1">
             {features.map((feature: any) => (
               <span key={feature.id} className="text-writingGrey">
-                {i18n.language === "ar" ? feature.arName : feature.enName}{" "}
+                {i18n.language === "ar" ? feature.arabic_name : feature.name}{" "}
                 {features.indexOf(feature) === features.length - 1 ? "." : ","}
               </span>
             ))}
