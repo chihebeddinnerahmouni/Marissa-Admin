@@ -24,6 +24,7 @@ import Signup from "./components/auth/Signup.tsx";
 import ForgetPassword from "./components/auth/ForgetPassword.tsx";
 import CheckListing from "./pages/make listing/CheckListing.tsx";
 import Bookings from "./pages/Bookings.tsx";
+import NoPage from "./pages/NoPage.tsx";
 
 
 
@@ -60,6 +61,9 @@ const router = createBrowserRouter([
       { path: "/forgot-password", element: <ForgetPassword /> },
     ],
   },
+  {
+    path: "*", element: <NoPage />
+  }
 ]);
 
 

@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const BookingDetailsCont = () => {
-  const [selected, setSelected] = useState("messages");
+  const [selected, setSelected] = useState("details");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<any>(null);
   const { bookingId } = useParams<{ bookingId: string }>();
