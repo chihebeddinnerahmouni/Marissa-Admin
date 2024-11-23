@@ -49,7 +49,7 @@ const CheckListing = () => {
        if (err.status === 404) {
          Swal.fire("error", "theres_no_boat_match_this_id", "error").then(
            () => {
-             navigate("/");
+             navigate("/listings");
            }
          );
        } else if (err.message === "Network Error") {
@@ -88,11 +88,25 @@ const CheckListing = () => {
       )
       .then((res) => {
         console.log(res.data);
-        Swal.fire("success", "listing_accepted", "success");
+        Swal.fire("success", "listing_accepted", "success")
+        .then(() => {
+          navigate("/listings");
+        })
       })
       .catch((err) => {
-        console.log(err);
-        Swal.fire("error", "error_occured", "error");
+        if (err.message === "Network Error") {
+          Swal.fire({
+            icon: "error",
+            title: t("network_error"),
+            text: t("please_try_again"),
+            customClass: {
+              confirmButton: "custom-confirm-button",
+            },
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+        // Swal.fire("error", "error_occured", "error");
       })
       .finally(() => {
         setLoadingButton(false);

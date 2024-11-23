@@ -13,6 +13,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ setClose, user }) => {
     
 
     // console.log(user);
+  const url = import.meta.env.VITE_SERVER_URL_USERS;
 
 
     return (
@@ -25,14 +26,14 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ setClose, user }) => {
         }
       >
         <img
-          src={user.profilePic}
+          src={user.profilePicture ? url + "/" + user.profilePicture : "/anonyme.jpg"}
           className="w-20 h-20 rounded-full mx-auto object-cover object-center lg:w-24 lg:h-24"
           alt="profile picture"
         />
 
         <h1 className="text-2xl font-bold text-center mt-4 lg:text-3xl">{user.name}</h1>
         <p className="text-gray-500 text-center mt-1 lg:text-lg">
-          Are you sure you want to delete this user? <br /> This action cannot
+          Are you sure you want to <span className='text-red-500 font-semibold'>Block</span> this user? <br /> This action cannot
           be undone
         </p>
 

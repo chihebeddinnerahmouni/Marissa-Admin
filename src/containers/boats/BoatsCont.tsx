@@ -38,7 +38,7 @@ const BoatsCont = ({ selectedType }: any) => {
       })
       .catch((error) => {
         setLoading(false);
-        if (error.message === "Network Error") {
+        if (error.message === "Error") {
           Swal.fire({
             icon: "error",
             title: t("network_error"),

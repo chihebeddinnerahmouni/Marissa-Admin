@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrash, FaBan } from "react-icons/fa";
+import axios from "axios";
 
 const ShipDetails = ({ ship }: any) => {
   const navigate = useNavigate();
@@ -11,15 +12,19 @@ const ShipDetails = ({ ship }: any) => {
   const url = import.meta.env.VITE_SERVER_URL_LISTING;
   const urlUser = import.meta.env.VITE_SERVER_URL_USERS;
 
+// console.log(ship);
+
   const navigateTo = () => {
     navigate(`boat-details/${ship.id}`);
   };
 
+
+  // Delete, Block and Update functions
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     Swal.fire({
       title: t("Are you sure?"),
-      text: t("You won't be able to revert this!"),
+      text: t(`You want to delete ${ship.title} won't be able to revert this!`),
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -27,11 +32,26 @@ const ShipDetails = ({ ship }: any) => {
       confirmButtonText: t("Yes, delete it!"),
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(t("Deleted!"), t("Your file has been deleted."), "success");
+        axios
+          .delete(`${url}/api/listing/listings/${ship.id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            },
+          })
+          .then(() => {
+            Swal.fire(t("Deleted!"), t("Your file has been deleted."), "success");
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+            Swal.fire("Error!", err.message, "error");
+          });
       }
     });
   };
 
+
+  // Block function
   const handleBlock = (e: React.MouseEvent) => {
     e.stopPropagation();
     Swal.fire({
@@ -49,6 +69,8 @@ const ShipDetails = ({ ship }: any) => {
   };
 
 
+
+  // Update function
   const handleUpdate = (e: React.MouseEvent) => {
     e.stopPropagation();
     Swal.fire({

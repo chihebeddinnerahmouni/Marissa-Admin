@@ -27,17 +27,14 @@ const BookingList = () => {
   const navigate = useNavigate();
   const { bookingId } = useParams<{ bookingId: string }>();
   const isMobile = useMediaQuery({ query: "(max-width: 1045px)" });
-  // const userId = Number(localStorage.getItem("userId"));
-  // const boatName = "Beautiful Beach Boat";
 
 
   useEffect(() => {
     const fetchConversations = async () => {
       const q = query(
         collection(db, "conversations"),
-        // where("clientDetails.name", "==", name),
-        // where("clientDetails.surname", "==", surname)
-        // where("listingDetails.name", "==", boatName)
+        // where("conversationId", "==", "inquiry_2")
+        // where("status", "==", "ongoing")
       );
       const unsubscribe = onSnapshot(q, (snapshot) => {
         let fetchedConversations = snapshot.docs.map((doc) => ({
@@ -48,6 +45,7 @@ const BookingList = () => {
         setOriginalConversations(fetchedConversations);
         setFilteredConversations(fetchedConversations);
         // console.log(fetchedConversations);
+        // console.log(fetchedConversations[0].conversationId);
         setLoading(false);
         if (!bookingId && !isMobile) {
           navigate(`/bookings/${fetchedConversations[0].conversationId}`);

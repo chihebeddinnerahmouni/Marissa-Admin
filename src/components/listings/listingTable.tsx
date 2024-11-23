@@ -4,12 +4,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { IoSearchSharp } from "react-icons/io5";
-import CheckIcon from "@mui/icons-material/Check";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import {
   TablePagination,
@@ -20,8 +16,6 @@ import {
   TableBody,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import AcceptSelectedListings from "./AcceptSelectedListings";
-import DeleteSelectedListings from "./DeleteSelectedListings";
 
 interface Data {
   id: number;
@@ -68,34 +62,16 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount } = props;
+  const { order, orderBy } = props;
 
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            sx={{
-              "&.Mui-checked": {
-                color: "red",
-              },
-              "&.MuiCheckbox-indeterminate": {
-                color: "red",
-              },
-            }}
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              "aria-label": "select all users",
-            }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
+            align="center"
+            padding="normal"
             sortDirection={orderBy === headCell.id ? order : false}
             sx={{ fontWeight: "bold" }}
             className="text-nowrap"
@@ -116,10 +92,8 @@ interface EnhancedTableToolbarProps {
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected, searchQuery, setSearchQuery, selected } = props;
+  const { numSelected, searchQuery, setSearchQuery } = props;
 
-  const [deleteAllModal, setDeleteAllModal] = React.useState(false);
-  const [acceptAllModal, setAcceptAllModal] = React.useState(false);
     const { i18n } = useTranslation();
   return (
     <Toolbar
@@ -134,16 +108,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         },
       ]}
     >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
         <Typography
           sx={{ flex: "1 1 100%" }}
           variant="h6"
@@ -152,7 +116,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         >
           Submitions
         </Typography>
-      )}
       <div className="search relative">
         <input
           type="text"
@@ -169,33 +132,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           }`}
         />
       </div>
-
-      {numSelected > 0 ? (
-        <>
-          {acceptAllModal && (
-            <AcceptSelectedListings
-              setClose={() => setAcceptAllModal(false)}
-              selected={selected}
-            />
-          )}
-          {deleteAllModal && (
-            <DeleteSelectedListings
-              setClose={() => setDeleteAllModal(false)}
-              selected={selected}
-            />
-          )}
-          <Tooltip title="Delete">
-            <>
-              <IconButton onClick={() => setAcceptAllModal(true)}>
-                <CheckIcon className="text-green-500" />
-              </IconButton>
-              <IconButton onClick={() => setDeleteAllModal(true)}>
-                <DeleteIcon className="text-main hover:text-mainHover" />
-              </IconButton>
-            </>
-          </Tooltip>
-        </>
-      ) : null}
     </Toolbar>
   );
 }
@@ -266,7 +202,7 @@ export default function EnhancedTable({ rows }: any) {
               onSelectAllClick={handleSelectAllClick}
               rowCount={rows.length}
             />
-            <TableBody>
+            {/* <TableBody>
               {rows.map((user: any, index: number) => {
                 const isItemSelected = selected.includes(user.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -293,24 +229,12 @@ export default function EnhancedTable({ rows }: any) {
                       },
                     }}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        sx={{
-                          "&.Mui-checked": {
-                            color: "red",
-                          },
-                        }}
-                        checked={isItemSelected}
-                        inputProps={{
-                          "aria-labelledby": labelId,
-                        }}
-                      />
-                    </TableCell>
                     <TableCell
                       component="th"
                       id={labelId}
                       scope="row"
-                      padding="none"
+                      align="center"
+                      padding="normal"
                     >
                       <img
                         src={user.image}
@@ -348,6 +272,86 @@ export default function EnhancedTable({ rows }: any) {
                   </TableRow>
                 );
               })}
+            </TableBody> */}
+            <TableBody>
+              {rows
+                .filter((user: any) =>
+                  user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // Pagination
+                .map((user: any, index: number) => {
+                  const isItemSelected = selected.includes(user.id);
+                  const labelId = `enhanced-table-checkbox-${index}`;
+
+                  return (
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, user.id)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={user.id}
+                      selected={isItemSelected}
+                      sx={{
+                        cursor: "pointer",
+                        bgcolor: isItemSelected
+                          ? "rgba(255, 0, 0, 0.1)"
+                          : "inherit",
+                        "&.Mui-selected": {
+                          bgcolor: "rgba(255, 0, 0, 0.1) !important",
+                        },
+                        "&.Mui-selected:hover": {
+                          bgcolor: "rgba(139, 0, 0, 0.1) !important",
+                        },
+                      }}
+                    >
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        align="center"
+                        padding="normal"
+                      >
+                        <img
+                          src={user.image}
+                          alt={`${user.name}'s profile`}
+                          className="w-[40px] h-[40px] rounded-full"
+                        />
+                      </TableCell>
+                      <TableCell className="text-nowrap">{user.name}</TableCell>
+                      <TableCell className="text-nowrap">
+                        {user.phone}
+                      </TableCell>
+                      <TableCell className="text-nowrap">
+                        {user.email}
+                      </TableCell>
+                      <TableCell className="text-nowrap" align="center">
+                        {user.boatName}
+                      </TableCell>
+                      <TableCell align="right">
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            alignItems: "center",
+                          }}
+                        >
+                          <IconButton
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              window.open(
+                                `listings/check-details/${user.id}`,
+                                "_blank"
+                              );
+                            }}
+                          >
+                            <RemoveRedEyeIcon className="text-green-500 hover:text-green-700" />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </Table>
         </TableContainer>

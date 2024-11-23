@@ -22,8 +22,32 @@ export default MakeListings
 
 const requests = [
   {
+    id: 1,
+    name: "chiheb rahmouni",
+    image: "https://",
+    email: "chihebrahmouni30@gmail.com",
+    phone: "0773781669",
+    boatName: "boat amazing world trips",
+  },
+  {
+    id: 2,
+    name: "dounia saidi",
+    image: "https://",
+    email: "chihebrahmouni30@gmail.com",
+    phone: "0773781669",
+    boatName: "boat amazing world trips",
+  },
+  {
     id: 3,
-    name: "kiheb rahmouni",
+    name: "filali raouf",
+    image: "https://",
+    email: "chihebrahmouni30@gmail.com",
+    phone: "0773781669",
+    boatName: "boat amazing world trips",
+  },
+  {
+    id: 4,
+    name: "islem fortas",
     image: "https://",
     email: "chihebrahmouni30@gmail.com",
     phone: "0773781669",

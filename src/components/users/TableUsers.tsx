@@ -1,4 +1,4 @@
-import users from "../../assets/files/users_array";
+// import users from "../../assets/files/users_array";
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
@@ -8,16 +8,17 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import Tooltip from "@mui/material/Tooltip";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import { visuallyHidden } from "@mui/utils";
 // import EditIcon from "@mui/icons-material/Edit";
 import { IoSearchSharp } from "react-icons/io5";
 import DeleteModal from "./DeleteUserModal";
 // import UpdateUserModal from "./UpdateUserModal";
-import DeleteAllUsersModal from "./DeleteAllUsersModal";
+// import DeleteAllUsersModal from "./DeleteAllUsersModal";
 import AddUserModal from "./AddUserModal";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import BlockIcon from "@mui/icons-material/Block";
 import {
   TablePagination,
   Box,
@@ -160,9 +161,9 @@ interface EnhancedTableToolbarProps {
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected, searchQuery, setSearchQuery, selected } = props;
+  const { numSelected, searchQuery, setSearchQuery } = props;
 
-  const [deleteAllModal, setDeleteAllModal] = React.useState(false);
+  // const [deleteAllModal, setDeleteAllModal] = React.useState(false);
   const [addUserModal, setAddUserModal] = React.useState(false);
   const { i18n } = useTranslation();
 
@@ -219,11 +220,11 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         />
       </div>
 
-      {numSelected > 0 ? (
+      {/* {numSelected > 0 ? (
         <Tooltip title="Delete">
           <>
             <IconButton onClick={() => setDeleteAllModal(true)}>
-              <DeleteIcon className="text-main hover:text-mainHover" />
+              <BlockIcon className="text-main hover:text-mainHover" />
             </IconButton>
             {deleteAllModal && (
               <DeleteAllUsersModal
@@ -233,13 +234,13 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             )}
           </>
         </Tooltip>
-      ) : null}
+      ) : null} */}
     </Toolbar>
   );
 }
 
 // Main Table component
-export default function EnhancedTable() {
+export default function EnhancedTable({ users }: any) {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
@@ -248,7 +249,9 @@ export default function EnhancedTable() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [deleteModalUserId, setDeleteModalUserId] = React.useState<
     number | null
-  >(0);
+    >(0);
+    const url = import.meta.env.VITE_SERVER_URL_USERS;
+
   // const [updateModalUserId, setUpdateModalUserId] = React.useState<number | null>(0);
 
   // console.log(selected);
@@ -264,7 +267,7 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = users.map((n) => n.id);
+      const newSelected = users.map((n: any) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -302,7 +305,7 @@ export default function EnhancedTable() {
   };
   const filteredUsers = React.useMemo(
     () =>
-      users.filter((user) =>
+      users.filter((user: any) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase())
       ),
     [searchQuery]
@@ -381,14 +384,16 @@ export default function EnhancedTable() {
                       padding="none"
                     >
                       <img
-                        src={user.profilePic}
+                        src={user.profilePicture ? url + "/" + user.profilePicture : "/anonyme.jpg"}
                         alt={`${user.name}'s profile`}
                         className="w-[40px] h-[40px] rounded-full"
                       />
                     </TableCell>
                     <TableCell className="text-nowrap">{user.name}</TableCell>
                     <TableCell className="text-nowrap">{user.role}</TableCell>
-                    <TableCell className="text-nowrap">{user.phone}</TableCell>
+                    <TableCell className="text-nowrap">
+                      {user.phoneNumber}
+                    </TableCell>
                     <TableCell className="text-nowrap">{user.email}</TableCell>
                     <TableCell align="right">
                       <Box
@@ -412,7 +417,7 @@ export default function EnhancedTable() {
                             setDeleteModalUserId(user.id);
                           }}
                         >
-                          <DeleteIcon className="text-main hover:text-mainHover" />
+                          <BlockIcon className="text-main hover:text-mainHover" />
                         </IconButton>
                       </Box>
                     </TableCell>
