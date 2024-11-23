@@ -7,7 +7,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { collection, onSnapshot, query , where} from "firebase/firestore";
+import {
+  collection, onSnapshot, query,
+  // where
+} from "firebase/firestore";
 import { db } from "../../lib/firebaseConfig";
 import Filter from "../../components/booking/Filter";
 import options from "../../assets/files/filter_categories";
@@ -25,7 +28,7 @@ const BookingList = () => {
   const { bookingId } = useParams<{ bookingId: string }>();
   const isMobile = useMediaQuery({ query: "(max-width: 1045px)" });
   // const userId = Number(localStorage.getItem("userId"));
-  const boatName = "Beautiful Beach Boat";
+  // const boatName = "Beautiful Beach Boat";
 
 
   useEffect(() => {

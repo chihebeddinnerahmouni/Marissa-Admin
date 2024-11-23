@@ -8,7 +8,10 @@ import {
 import LoadingLine from "../../components/ui/LoadingLine";
 import { useParams } from "react-router-dom";
 import { db } from "../../lib/firebaseConfig";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection, onSnapshot, query,
+  // where
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 
