@@ -7,18 +7,26 @@ import {
 } from "@mui/material";
 import { FaDownload } from "react-icons/fa6";
 
-
 const DocumentComp = ({ document }: any) => {
+
+
   // console.log(document);
   const mainColor = "#FF385C";
+  const url = import.meta.env.VITE_SERVER_URL_LISTING;
+
+  if (!document || !document.document_path) {
+    return <div>Document path is not available</div>;
+  }
+
+  const isPdf = document.document_path.endsWith(".pdf");
 
   return (
     <Card className="shadow-lg rounded-lg overflow-hidden">
       <CardContent>
         <Typography variant="h5" component="h2">
-          {document.title}
+          {document.document_type}
         </Typography>
-        {document.document.endsWith(".pdf") ? (
+        {isPdf ? (
           <p className="mt-1">PDF Document</p>
         ) : (
           <Typography variant="body2" color="textSecondary">
@@ -29,15 +37,15 @@ const DocumentComp = ({ document }: any) => {
       <CardActions>
         <Button
           size="small"
-          href={document.document}
+          href={url + "/" + document.document_path}
           target="_blank"
           sx={{ color: mainColor }}
         >
-          View {document.document.endsWith(".pdf") ? "Document" : "Image"}
+          View {isPdf ? "Document" : "Image"}
         </Button>
         <Button
-          // size="small"
-          href={document.document}
+          size="small"
+          href={document.document || "#"}
           download
           sx={{ color: mainColor }}
         >

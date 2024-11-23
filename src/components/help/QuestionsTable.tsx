@@ -36,7 +36,7 @@ const TableOfQuestions = ({
     setSelectedQuestionId(selectedQuestionId === id ? null : id);
   };
 
-  const handleDelete = (_id: number) => {
+  const handleDelete = (id: number) => {
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to delete this question?",
@@ -46,17 +46,23 @@ const TableOfQuestions = ({
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Success", "The question has been deleted!", "success");
-        // axios.delete(`${url}/${_id}`)
-        //   .then((res) => {
-        //     console.log(res.data);
-        //   })
-        //   .catch((err) => {
-        //     console.error(err);
-        //   })
+        axios.delete(`${url}/questions/${id}`)
+          .then(() => {
+            // console.log(res.data);
+                    Swal.fire(
+                      "Success",
+                      "The question has been deleted!",
+                      "success"
+                    );
+                   window.location.reload();
+          })
+          .catch((err) => {
+            console.error(err);
+          })
       }
     });
   };
+
 
   return (
     <div className="overflow-x-auto">

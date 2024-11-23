@@ -16,6 +16,7 @@ import {
 // import { useTranslation } from "react-i18next";
 import AcceptOneSubmission from "./AcceptOneSubmission";
 import DeleteOneSubmittion from "./DeleteOneSubmittion";
+import { useTranslation } from "react-i18next";
 
 interface Data {
   id: number;
@@ -83,6 +84,7 @@ export default function EnhancedTable({rows}: any) {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const { i18n } = useTranslation();
   const [deleteModalUserId, setDeleteModalUserId] = React.useState<
     number | null
         >(0);
@@ -112,7 +114,7 @@ export default function EnhancedTable({rows}: any) {
             />
             <TableBody>
               {rows.map((user: any) => {
-                return (
+           return (
                   <TableRow
                     hover
                     role="checkbox"
@@ -137,7 +139,8 @@ export default function EnhancedTable({rows}: any) {
                       {user.business_type}
                     </TableCell>
                     <TableCell align="center" className="text-nowrap">
-                      {user.boat_type}
+                      {/* {user.boat_type} */}
+                      {i18n.language === "en" ? user.boat_type.name : user.boat_type}
                     </TableCell>
                     <TableCell className="text-nowrap" align="center">
                       {user.city}

@@ -1,5 +1,8 @@
 import ReactModal from 'react-modal';
 import React from 'react';
+import axios from 'axios';
+import LoadingButton from '../ui/LoadingButton';
+
 
 
 interface DeleteModalProps {
@@ -14,6 +17,21 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ setClose, user }) => {
 
     // console.log(user);
   const url = import.meta.env.VITE_SERVER_URL_USERS;
+  const [loading, setLoading] = React.useState(false);
+
+  const block = async (e: any) => {
+    e.stopPropagation();
+    setLoading(true);
+    axios.delete(url + "/" + "/admin/user/users?block=true&suspend=false")
+    .then((res) => {
+      console.log(res.data);
+      // setClose(0);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+   }
 
 
     return (
@@ -49,11 +67,9 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ setClose, user }) => {
           </button>
           <button
             className="w-full bg-red-500 text-white px-4 py-2 rounded-lg"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
+            onClick={block}
           >
-            Delete
+           {loading ? <LoadingButton /> : "Block"}
           </button>
         </div>
       </ReactModal>
