@@ -11,11 +11,14 @@ import {
   query,
   onSnapshot,
 } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 
 const BookingMessages = ({ details }: any) => {
   const [loading, setLoading] = useState(true);
   const [messages, setMessages] = useState<any>([]);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { i18n } = useTranslation();
+  const locale = i18n.language === "ar" ? "ar" : "en-GB";
 
   useEffect(() => {
     setLoading(true);
@@ -55,18 +58,6 @@ const BookingMessages = ({ details }: any) => {
           {messages.map((message: any, index: number) => (
             <div key={index} className="flex flex-col space-y-2">
               <div className="flex items-center gap-2">
-                {/* <img
-                  src={
-                    message.senderId === userId
-                      ? profilePic
-                        ? `${url}/${profilePic}`
-                        : "/anonyme.jpg"
-                      : ownerPic
-                      ? `${url}/${ownerPic}`
-                      : "/anonyme.jpg"
-                  }
-                  className="w-8 h-8 rounded-full bg-gray-300 object-cover object-center lg:h-10 lg:w-10"
-                /> */}
                 <div className="flex flex-col">
                   <span className="font-semibold text-sm lg:text-base">
                     {message.senderName}
@@ -76,14 +67,14 @@ const BookingMessages = ({ details }: any) => {
                       <>
                         {new Date(
                           message.timestamp.toDate()
-                        ).toLocaleDateString("en-GB", {
+                        ).toLocaleDateString(locale, {
                           day: "2-digit",
                           month: "short",
                           year: "numeric",
-                        })}{" "}
+                        })}{" , "}
                         {new Date(
                           message.timestamp.toDate()
-                        ).toLocaleTimeString("en-GB", {
+                        ).toLocaleTimeString(locale, {
                           hour: "2-digit",
                           minute: "2-digit",
                           second: undefined,
@@ -109,166 +100,3 @@ const BookingMessages = ({ details }: any) => {
 
 export default BookingMessages;
 
-
-// const messages = [
-//   {
-//     senderId: 1,
-//     senderName: "User One",
-//     message: "Hello, this is a test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:00:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-//   {
-//     senderId: 2,
-//     senderName: "User Two",
-//     message: "Hi, this is another test message.",
-//     timestamp: {
-//       toDate: () => new Date("2022-10-10T10:05:00Z"),
-//     },
-//   },
-// ];

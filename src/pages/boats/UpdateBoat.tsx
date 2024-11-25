@@ -40,9 +40,10 @@ const UpdateBoat = () => {
       })
       .catch((err) => {
         if (err.status === 404) {
-          Swal.fire("error", "theres_no_boat_match_this_id", "error").then(
+          Swal.fire("error", "theres_no_boat_match_this_id", "error")
+            .then(
             () => {
-              navigate("/");
+              navigate("/boats");
             }
           );
         } else if (err.message === "Network Error") {
@@ -78,7 +79,11 @@ const UpdateBoat = () => {
         </p>
 
         <Owner details={details} />
-        <Validated validated={details.validated} />
+        <Validated
+          blocked={details.blocked}
+          title={details.title}
+          id={details.id}
+        />
         <NamePic
           title={details.title}
           image={`${url}/${details.Images[0].url}`}

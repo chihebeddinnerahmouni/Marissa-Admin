@@ -25,6 +25,7 @@ import ForgetPassword from "./components/auth/ForgetPassword.tsx";
 import CheckListing from "./pages/make listing/CheckListing.tsx";
 import Bookings from "./pages/Bookings.tsx";
 import NoPage from "./pages/NoPage.tsx";
+import AccountUser from "./pages/AccountUser.tsx";
 
 
 
@@ -49,8 +50,9 @@ const router = createBrowserRouter([
       },
       { path: "/listings", element: <MakeListings /> },
       { path: "listings/check-details/:listingId", element: <CheckListing /> },
-      { path: "bookings", element: <Bookings /> },
-      { path: "bookings/:bookingId", element: <Bookings /> },
+      { path: "inquiries", element: <Bookings /> },
+      { path: "inquiries/:bookingId", element: <Bookings /> },
+      { path: "/users/user/:userId", element: <AccountUser /> },
     ],
   },
   {
@@ -62,8 +64,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "*", element: <NoPage />
-  }
+    path: "*",
+    element: <NoPage />,
+  },
 ]);
 
 
